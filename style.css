@@ -1,0 +1,402 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.header {
+    background-color: #003366;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+
+.gov-br-text {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+}
+
+.menu li {
+    margin-left: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.menu a:hover {
+    color: #ffcc00;
+}
+
+.title-container {
+    margin-top: 120px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.titulo {
+    font-size: 32px;
+    font-weight: bold;
+    color: brown;
+}
+
+.submenu {
+    background-color: #ffffff;
+    padding: 12px 8vw;
+    position: fixed;
+    top: 60px;
+    width: 100%;
+    z-index: 999;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.submenu ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.submenu li a {
+    text-decoration: none;
+    color: #004080;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.submenu li a:hover {
+    background-color: #e9f2fb;
+    color: #00264d;
+}
+
+
+
+.sinapir-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f5ede1; /* Tom de marrom claro */
+    padding: 100px; /* Aumentei ainda mais o espaço interno */
+    border-radius: 10px;
+    max-width: 100%; /* Agora ocupa quase a tela toda */
+    min-height: 500px;
+    margin: 20px auto; /* Pequeno espaçamento em cima e embaixo */
+    position: relative; /* Necessário para posicionar as caixas dentro dessa seção */
+}
+
+
+.sinapir-texto {
+    width: 60%; /* O texto pega mais espaço */
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.sinapir-texto h2 {
+    font-size: 40px; /* Mais destaque no título */
+    margin-bottom: 20px;
+}
+
+.sinapir-texto p {
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+.sinapir-img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sinapir-img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+/* Link "Clique aqui" */
+.clique-aqui {
+    display: inline-block;
+    background-color: #197202;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 24px;
+    margin-top: 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.clique-aqui:hover {
+    background-color: #ffcc00;
+}
+
+.hub-igualdade-racial {
+    background-color: #f5f5f5; /* Cor de fundo clara */
+    padding: 60px 20px; /* Espaçamento ao redor da seção */
+    text-align: center; /* Alinhar o texto ao centro */
+}
+
+.hub-introducao h2 {
+    font-size: 32px;
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.hub-introducao p {
+    font-size: 18px;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+}
+
+.hub-conteudo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 70px;
+    justify-content: center;
+    margin-top: 90px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 50%; /* Torna o card um círculo */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 180px; /* Tamanho fixo do card */
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Começa do topo */
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    overflow: hidden; /* Evita que elementos saiam do círculo */
+}
+
+.card img {
+    width: 60px; /* Ajustei para um tamanho menor */
+    height: 85px;
+    object-fit: contain; /* Mantém a proporção da imagem */
+    border-radius: 50%;
+    margin-bottom: 5px; /* Espaço entre a imagem e o texto */
+}
+
+.card h3 {
+    font-size: 14px; /* Reduzi para caber melhor */
+    color: #003366;
+    margin: 5px 0;
+}
+
+.card p {
+    font-size: 12px;
+    color: #555;
+    margin: 0;
+    padding: 0 5px;
+    line-height: 1.2;
+    max-width: 90%; /* Para evitar quebra feia */
+    text-overflow: ellipsis; /* Adiciona "..." caso o texto seja longo */
+    overflow: hidden;
+    white-space: normal; /* Permite que o texto quebre em múltiplas linhas */
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+    .hub-conteudo {
+        gap: 20px;
+    }
+
+    .card {
+        width: 160px; /* Reduz o tamanho em telas pequenas */
+        height: 160px;
+    }
+
+    .card h3 {
+        font-size: 12px;
+    }
+
+    .card p {
+        font-size: 10px;
+    }
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+    .hub-conteudo {
+        gap: 20px;
+    }
+
+    .card {
+        width: 160px; /* Reduz o tamanho em telas pequenas */
+        height: 160px;
+    }
+
+    .card h3 {
+        font-size: 12px;
+    }
+
+    .card p {
+        font-size: 10px;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+.carrossel {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f0f0f0;
+}
+
+.carrossel-container {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    display: none;
+}
+
+.slide.ativo {
+    display: block;
+}
+
+.slide img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.texto {
+    background-color: #00254F;
+    color: white;
+    padding: 10px;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #00254F;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 24px;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+/* Sessão de notícias aprimorada */
+.noticias {
+    padding: 40px 8vw;
+    background-color: #f9f9f9;
+}
+
+.noticias h2 {
+    font-size: 24px;
+    color: #004080;
+    margin-bottom: 20px;
+}
+
+.noticias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.noticia {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    flex: 1 1 30%;
+    transition: transform 0.3s;
+    min-width: 280px;
+    max-width: 100%;
+}
+
+.noticia:hover {
+    transform: translateY(-5px);
+}
+
+.noticia img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.noticia h3 {
+    font-size: 18px;
+    color: #004080;
+    margin: 12px 16px 4px;
+}
+
+.noticia p {
+    font-size: 14px;
+    color: #444;
+    margin: 0 16px 16px;
+}
+
+.noticia a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+

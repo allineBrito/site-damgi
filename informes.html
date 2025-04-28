@@ -5,289 +5,1055 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Informes MIR</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    body {
+        :root {
+      --namora-escuro: #4A2712;             
+      --namora-cafe: #5C2D00;               
+      --bogo: #8A858F;                      
+      --amarelo-mel: #D46B00;               
+      --vermelho-guara: #990000;            
+      --azul-atlantico: #0C3B8B;            
+      --amarelo-sol: #D4B000;              
+      --verde-guarizo: #007A00;             
+      --laranja-coral: #CC3300;            
+      --rosa-manga: #D4599A;               
+      --vermelho-urucum: #CC0000;          
+      --verde-amadriba: #00A800;            
+      --gradient-1: linear-gradient(135deg, var(--azul-atlantico), var(--verde-guarizo));
+      --gradient-2: linear-gradient(135deg, var(--amarelo-mel), var(--vermelho-guara));
+      --gradient-3: linear-gradient(135deg, var(--rosa-manga), var(--laranja-coral));
+      --gradient-4: linear-gradient(135deg, var(--verde-amadriba), var(--azul-atlantico));
+      
+            --texto-escuro: #2E2E2E;
+      --texto-medio: #555555;
+      --texto-claro: #777777;
+    }
+    
+        * {
       margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f8f3ef;
-      color: #3a2b23;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #f9f9f9;
+      color: var(--texto-escuro);
+      line-height: 1.7;
+      overflow-x: hidden;
     }
 
-    .header {
-      background-color: #003366;
+        .header {
+      background: var(--laranja-coral);
       color: white;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
+      padding: 1.2rem 5vw;
       display: flex;
-      align-items: center;
-      height: 60px;
-      padding: 0 20px;
       justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      position: relative;
+      z-index: 1000;
+      border-bottom: 3px solid var(--amarelo-mel);
     }
 
     .gov-br-text {
-      text-decoration: none;
       color: white;
+      text-decoration: none;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .gov-br-text:hover {
+      color: var(--amarelo-sol);
+      transform: translateY(-2px);
+    }
+
+    .gov-br-text i {
+      font-size: 1.5rem;
+      color: var(--amarelo-sol);
     }
 
     .menu ul {
-      list-style: none;
       display: flex;
-      margin: 0;
-      padding: 0;
-    }
-
-    .menu li {
-      margin-left: 20px;
+      list-style: none;
+      gap: 2rem;
     }
 
     .menu a {
+      color: white;
       text-decoration: none;
-      color: rgb(253, 253, 253);
-      font-weight: bold;
-      font-size: 14px;
-      transition: color 0.3s ease;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 0;
+      letter-spacing: 0.5px;
     }
 
     .menu a:hover {
-      color: #ffcc00;
+      color: var(--amarelo-sol);
     }
 
-    /* Submenu */
-    .submenu {
-      background-color: #f2f2f2;
-      padding: 10px 8vw;
-      position: fixed;
-      top: 60px; /* logo abaixo do header */
+    .menu a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      background: var(--amarelo-sol);
+      bottom: 0;
+      left: 0;
+      transition: width 0.4s ease;
+      border-radius: 3px;
+    }
+
+    .menu a:hover::after {
       width: 100%;
+    }
+
+        .submenu {
+      background: var(--namora-cafe);
+      padding: 1.2rem 5vw;
+      position: sticky;
+      top: 0;
       z-index: 999;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+      border-bottom: 3px solid var(--amarelo-mel);
     }
 
-    .submenu ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .submenu-nav ul {
       display: flex;
+      list-style: none;
+      justify-content: center;
+      gap: 2.5rem;
       flex-wrap: wrap;
-      gap: 15px;
     }
 
-    .submenu li a {
+    .submenu-nav li a {
       text-decoration: none;
-      color: #050505;
-      font-weight: bold;
-      font-size: 14px;
-      transition: color 0.3s ease;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: all 0.4s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .submenu li a:hover {
-      color: #ffcc00;
+    .submenu-nav li a i {
+      font-size: 1rem;
+      color: var(--amarelo-sol);
+      transition: transform 0.3s ease;
     }
 
-    main {
-  padding: 180px 8vw 4rem;
-    }  
+    .submenu-nav li a:hover {
+      color: var(--amarelo-sol);
+    }
+
+    .submenu-nav li a:hover i {
+      transform: translateX(5px);
+    }
+
+    .submenu-nav li a::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      background: var(--amarelo-sol);
+      bottom: 0;
+      left: 0;
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+
+    .submenu-nav li a:hover::before {
+      width: 100%;
+    }
+
+        .hero {
+      position: relative;
+      height: 70vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(rgba(74, 39, 18, 0.85), rgba(74, 39, 18, 0.9)), 
+                  url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_cND1xz6Cl3H6Z-IMZXjUzq0vqD2KL39ujq_dUhkoT5ADN_oU8IvxQYOW36QW7uSAeTg&usqp=CAU') no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      margin-bottom: 5rem;
+      overflow: hidden;
+      padding: 0 5vw;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(212, 107, 0, 0.25), transparent 60%),
+                  radial-gradient(circle at 80% 70%, rgba(0, 122, 0, 0.2), transparent 60%);
+      animation: float 12s infinite alternate ease-in-out;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-20px, -10px) rotate(-2deg); }
+      100% { transform: translate(10px, 5px) rotate(1deg); }
+    }
+
+    .title-container {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      animation: fadeInUp 1s ease-out;
+    }
 
     .titulo {
-      font-size: 2rem;
-      text-align: center;
-      margin: 2rem 0;
-      color: #4e342e;
-    }
-
-    section {
-      margin-bottom: 2rem;
-    }
-
-    h2 {
-      color: #5e3f2c;
-      margin-bottom: 0.8rem;
-      border-bottom: 2px solid #d2bba0;
-      padding-bottom: 0.4rem;
-    }
-
-    .edicao {
-      display: flex;
-      align-items: flex-start;
+      font-size: 4rem;
+      font-weight: 900;
       margin-bottom: 1.5rem;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-    }
-
-    .edicao img {
-      width: 150px;
-      height: 100px;
-      object-fit: cover;
-    }
-
-    .edicao-texto {
-      padding: 1rem;
-    }
-
-    .edicao-texto a {
-      color: #003366;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .edicao-texto a:hover {
-      text-decoration: underline;
-    }
-
-    .voltar-container {
-    margin-top: 3rem;
-    text-align: center;
-    border: 1px dashed red; /* só pra teste */
-    }
-
-    .voltar-container button {
-      padding: 10px 25px;
-      background-color: #5e3f2c;
+      line-height: 1.1;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
       color: white;
-      font-size: 1rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s ease;
+      letter-spacing: -1px;
     }
 
-    .voltar-container button:hover {
-      background-color: #7b5642;
+    .titulo-destaque {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: rgba(74, 39, 18, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 50px;
+      border: 2px solid var(--amarelo-mel);
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: white;
+      max-width: 800px;
+      line-height: 1.6;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+        main {
+      padding: 2rem 8vw 6rem;
+    }
+
+        .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      position: relative;
+      color: var(--namora-escuro);
+      font-weight: 800;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 6px;
+      background: var(--gradient-2);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 6px;
+      box-shadow: 0 3px 10px rgba(212, 107, 0, 0.3);
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--texto-medio);
+      max-width: 750px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+        .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 6rem;
+    }
+
+    .card {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: white;
+      border: none;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 25px 60px rgba(74, 39, 18, 0.2);
+    }
+
+    .card-header {
+      height: 10px;
+      background: var(--gradient-3);
+      transition: all 0.5s ease;
+    }
+
+    .card:hover .card-header {
+      height: 15px;
+    }
+
+    .card-azul .card-header {
+      background: var(--gradient-1);
+    }
+
+    .card-verde .card-header {
+      background: linear-gradient(to right, var(--verde-guarizo), var(--verde-amadriba));
+    }
+
+    .card-vermelho .card-header {
+      background: linear-gradient(to right, var(--vermelho-guara), var(--laranja-coral));
+    }
+
+    .card-content {
+      padding: 2rem;
+      position: relative;
+    }
+
+    .card-category {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      background: var(--bogo);
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card-azul .card-category {
+      background: var(--azul-atlantico);
+    }
+
+    .card-verde .card-category {
+      background: var(--verde-guarizo);
+    }
+
+    .card-vermelho .card-category {
+      background: var(--vermelho-guara);
+    }
+
+    .card-title {
+      font-size: 1.6rem;
+      color: var(--namora-escuro);
+      margin-bottom: 1rem;
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .card-date {
+      font-size: 0.95rem;
+      color: var(--texto-medio);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-date i {
+      color: var(--amarelo-mel);
+      font-size: 1.1rem;
+    }
+
+    .card-text {
+      font-size: 1rem;
+      color: var(--texto-medio);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      background: var(--gradient-3);
+      box-shadow: 0 5px 15px rgba(212, 89, 154, 0.3);
+    }
+
+    .card-azul .card-link {
+      background: var(--gradient-1);
+      box-shadow: 0 5px 15px rgba(12, 59, 139, 0.3);
+    }
+
+    .card-verde .card-link {
+      background: linear-gradient(to right, var(--verde-guarizo), var(--verde-amadriba));
+      box-shadow: 0 5px 15px rgba(0, 122, 0, 0.3);
+    }
+
+    .card-vermelho .card-link {
+      background: var(--gradient-2);
+      box-shadow: 0 5px 15px rgba(153, 0, 0, 0.3);
+    }
+
+    .card-link:hover {
+      gap: 15px;
+      transform: translateX(8px);
+      box-shadow: 0 8px 25px rgba(212, 89, 154, 0.4);
+    }
+
+    .card-azul .card-link:hover {
+      box-shadow: 0 8px 25px rgba(12, 59, 139, 0.4);
+    }
+
+    .card-verde .card-link:hover {
+      box-shadow: 0 8px 25px rgba(0, 122, 0, 0.4);
+    }
+
+    .card-vermelho .card-link:hover {
+      box-shadow: 0 8px 25px rgba(153, 0, 0, 0.4);
+    }
+
+    .card-link i {
+      transition: transform 0.3s ease;
+    }
+
+    .card-link:hover i {
+      transform: translateX(5px);
+    }
+
+        .pub-list {
+      margin-bottom: 6rem;
+    }
+
+    .pub-item {
+      display: flex;
+      align-items: center;
+      padding: 0;
+      border-radius: 16px;
+      margin-bottom: 2.5rem;
+      background: white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.5s ease;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .pub-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(74, 39, 18, 0.2);
+    }
+
+    .pub-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 8px;
+      background: var(--gradient-2);
+    }
+
+    .pub-img {
+      width: 250px;
+      height: 180px;
+      object-fit: cover;
+      flex-shrink: 0;
+      transition: all 0.5s ease;
+    }
+
+    .pub-item:hover .pub-img {
+      transform: scale(1.05);
+    }
+
+    .pub-details {
+      flex-grow: 1;
+      padding: 2rem;
+    }
+
+    .pub-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--namora-escuro);
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+
+    .pub-meta {
+      font-size: 0.95rem;
+      color: var(--texto-medio);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .pub-meta span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pub-meta i {
+      color: var(--amarelo-mel);
+      font-size: 1.1rem;
+    }
+
+    .pub-desc {
+      font-size: 1.05rem;
+      color: var(--texto-medio);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .pub-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      background: var(--gradient-1);
+      box-shadow: 0 5px 15px rgba(12, 59, 139, 0.3);
+    }
+
+    .pub-link:hover {
+      background: var(--gradient-2);
+      gap: 15px;
+      transform: translateX(8px);
+      box-shadow: 0 8px 25px rgba(212, 107, 0, 0.4);
+    }
+
+    .pub-link i {
+      transition: transform 0.3s ease;
+    }
+
+    .pub-link:hover i {
+      transform: translateX(5px);
+    }
+
+        .voltar-container {
+      margin-top: 6rem;
+      text-align: center;
+    }
+
+    .voltar-btn {
+      padding: 1.2rem 3rem;
+      background: var(--gradient-3);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(212, 89, 154, 0.3);
+      font-size: 1.1rem;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .voltar-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: var(--gradient-1);
+      transition: width 0.5s ease;
+      z-index: -1;
+    }
+
+    .voltar-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(12, 59, 139, 0.4);
+    }
+
+    .voltar-btn:hover::before {
+      width: 100%;
+    }
+
+    .voltar-btn i {
+      transition: transform 0.4s ease;
+    }
+
+    .voltar-btn:hover i {
+      transform: translateX(-8px);
+    }
+
+        @media (max-width: 1440px) {
+      .hero {
+        height: 65vh;
+      }
+      
+      .titulo {
+        font-size: 3.5rem;
+      }
+    }
+    
+    @media (max-width: 1200px) {
+      .hero {
+        height: 60vh;
+        min-height: 550px;
+      }
+      
+      .section-title {
+        font-size: 2.5rem;
+      }
+      
+      .pub-img {
+        width: 200px;
+        height: 150px;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .hero {
+        height: 55vh;
+      }
+      
+      .titulo {
+        font-size: 3rem;
+      }
+      
+      .titulo-destaque {
+        font-size: 1.2rem;
+      }
+      
+      .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      }
+      
+      .pub-item {
+        flex-direction: column;
+      }
+      
+      .pub-img {
+        width: 100%;
+        height: 200px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        height: auto;
+        padding: 8rem 0;
+        clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+        min-height: 500px;
+      }
+      
+      .titulo {
+        font-size: 2.5rem;
+      }
+      
+      .titulo-destaque {
+        font-size: 1.1rem;
+        padding: 1rem 2rem;
+      }
+      
+      .submenu-nav ul {
+        gap: 1.5rem;
+      }
+      
+      .section-title {
+        font-size: 2.2rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero {
+        padding: 6rem 0;
+      }
+      
+      .titulo {
+        font-size: 2.2rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .menu ul {
+        gap: 1.2rem;
+      }
+      
+      .submenu-nav ul {
+        gap: 1rem;
+      }
+      
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .pub-img {
+        height: 180px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .titulo {
+        font-size: 2rem;
+      }
+      
+      .titulo-destaque {
+        padding: 0.8rem 1.5rem;
+      }
+      
+      .menu ul {
+        gap: 0.8rem;
+      }
+      
+      .submenu-nav ul {
+        gap: 0.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.6rem;
+      }
+      
+      .section-title::after {
+        width: 80px;
+        height: 4px;
+        bottom: -10px;
+      }
+      
+      .voltar-btn {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 
 <body>
   <header class="header">
-    <a href="https://www.gov.br" target="_blank" class="gov-br-text">gov.br</a>
+    <a href="https://www.gov.br" target="_blank" class="gov-br-text">
+        <i class="fas fa-landmark"></i> gov.br
+    </a>
     <nav class="menu">
-      <ul>
-        <li><a href="#">COMUNICA BR</a></li>
-        <li><a href="#">ACESSO À INFORMAÇÃO</a></li>
-        <li><a href="#">PARTICIPE</a></li>
-        <li><a href="#">LEGISLAÇÃO</a></li>
-        <li><a href="#">ÓRGÃOS DO GOVERNO</a></li>
-      </ul>
+        <ul>
+            <li><a href="#comunicacao">COMUNICA BR</a></li>
+            <li><a href="#informacao">ACESSO À INFORMAÇÃO</a></li>
+            <li><a href="#participacao">PARTICIPE</a></li>
+            <li><a href="#legislacao">LEGISLAÇÃO</a></li>
+            <li><a href="#orgaos">ÓRGÃOS DO GOVERNO</a></li>
+        </ul>
     </nav>
   </header>
 
-   <!-- Submenu -->
-   <nav class="submenu">
-    <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="informes.html">Informes MIR</a></li>
-        <li><a href="atir.html">ATIR</a></li>
-        <li><a href="norma.html">Normativos</a></li>
-        <li><a href="paineis.html">Painéis</a></li>
-        <li><a href="data.html">Data SINAPIR</a></li>
-    </ul>
+  <!-- Submenu Moderno -->
+  <nav class="submenu">
+    <nav class="submenu-nav">
+      <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Início</a></li>
+        <li><a href="informes.html"><i class="fas fa-newspaper"></i> Publicações</a></li>
+        <li><a href="atir.html"><i class="fas fa-chart-line"></i> ATIR</a></li>
+        <li><a href="norma.html"><i class="fas fa-gavel"></i> Normativos</a></li>
+        <li><a href="paineis.html"><i class="fas fa-chart-pie"></i> Painéis</a></li>
+        <li><a href="data.html"><i class="fas fa-database"></i> Data SINAPIR</a></li>
+      </ul>
+    </nav>
   </nav>
 
+  <!-- Hero Section Espetacular - Igual ao ATIR -->
+  <section class="hero">
+    <div class="title-container">
+      <h1 class="titulo">PUBLICAÇÕES</h1>
+      <div class="titulo-destaque">
+        <div>
+          <div>Conhecimento t&eacute;cnico e cient&iacute;fico sobre igualdade racial: informes, pesquisas, notas t&eacute;cnicas e bases de dados.</div>
+          <div>
+          <div>
+          <div>Conhecimento t&eacute;cnico e cient&iacute;fico sobre igualdade racial: informes, pesquisas, notas t&eacute;cnicas e bases de dados.</div>
+          <div>
+          <div>
+          <div>Conhecimento t&eacute;cnico e cient&iacute;fico sobre igualdade racial: informes, pesquisas, notas t&eacute;cnicas e bases de dados.</div>
+          <div>
+          <div>
+          <div>Conhecimento t&eacute;cnico e cient&iacute;fico sobre igualdade racial: informes, pesquisas, notas t&eacute;cnicas e bases de dados.
+          <div>
+          <div>Conhecimento t&eacute;cnico e cient&iacute;fico sobre igualdade racial: informes, pesquisas, notas t&eacute;cnicas e bases de dados.</div>
+          <div>&nbsp;</div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </section>
 
   <main>
-    <h1 class="titulo">INFORMES DO MINISTÉRIO DA IGUALDADE RACIAL</h1>
-
-    <section>
-      <h2>Sobre o Informe</h2>
-      <p>
-        O Informe MIR é um documento de caráter informativo que objetiva a disseminação de conhecimento tendo por base temas diversos que guardem relação com a promoção da igualdade racial e o combate às desigualdades.
-        Elaborado por técnicas e técnicos da Diretoria de Avaliação, Monitoramento e Gestão da Informação (DAMGI), o Informe MIR corresponde às demandas de conteúdos que contribuam para a divulgação de dados e pesquisas com vistas a ampliar o debate e a reflexão sobre as questões raciais no Brasil.
-      </p>
-    </section>
-
-    <section>
-      <h2>Equipe Editorial</h2>
-      <p><strong>Editora principal:</strong> Tatiana Dias Silva</p>
-      <p><strong>Editores:</strong> Luciano Pereira da Silva, Edvaldo Batista de Sá</p>
-      <p><strong>Revisoras:</strong> Cleide Lemes da Silva Cruz, Taís de Sant’Anna Machado</p>
-    </section>
-
-    <section>
-      <h2>Edições Publicadas</h2>
-
-      <div class="edicao">
-        <img src="https://etnico.wordpress.com/wp-content/uploads/2024/02/captura-de-tela-2024-02-19-as-15.58.09.png?w=462" alt="Informe 1">
-        <div class="edicao-texto">
-          <a href="https://www.gov.br/igualdaderacial/pt-br/composicao/secretaria-de-gestao-do-sistema-nacional-de-promocao-da-igualdade-racial/diretoria-de-avaliacao-monitoramento-e-gestao-da-informacao/informativos/informe-edicao-censo-quilombola-2022_31-08.pdf" target="_blank">
-            Informe nº 1, ago. 2023 - Edição Censo Quilombola 2022
-          </a>
-        </div>
-      </div>
-
-      <div class="edicao">
-        <img src="https://media.istockphoto.com/id/1262687224/pt/vetorial/abstract-black-woman-portraits-set-of-female-silhouettes-girls-faces-with-floral.jpg?s=612x612&w=0&k=20&c=nb4q_ET1zxVsYn5eijd8AS-8z17M8waWheY1Ql9PXes=" alt="Informe 2">
-        <div class="edicao-texto">
-          <a href="https://www.gov.br/igualdaderacial/pt-br/composicao/secretaria-de-gestao-do-sistema-nacional-de-promocao-da-igualdade-racial/diretoria-de-avaliacao-monitoramento-e-gestao-da-informacao/informativos/informe-edicao-mulheres-negras.pdf" target="_blank">
-            Informe nº 2, set. 2023 - Edição Mulheres Negras
-          </a>
-        </div>
-      </div>
-
-      <div class="edicao">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDdgXQBKf18hy8nWLDAdfbye-Cr-sz6g_4Gw&s" alt="Informe 3">
-        <div class="edicao-texto">
-          <a href="https://www.gov.br/igualdaderacial/pt-br/composicao/secretaria-de-gestao-do-sistema-nacional-de-promocao-da-igualdade-racial/diretoria-de-avaliacao-monitoramento-e-gestao-da-informacao/informativos/Informe-edicao-censo-demogrfico2022.pdf" target="_blank">
-            Informe nº 3, fev. 2024 - Edição Censo Demográfico 2022
-          </a>
-        </div>
-      </div>
-
-      <div class="edicao">
-        <img src="https://www.gov.br/igualdaderacial/pt-br/assuntos/copy2_of_noticias/5a-conferencia-nacional-de-promocao-da-igualdade-racial-acontecera-entre-8-e-12-de-maio-de-2024/fcpzzb_abr2905183105.jpg/@@images/3465523a-b0aa-4be1-b764-1c762bef7e0f.jpeg" alt="Informe 4">
-        <div class="edicao-texto">
-          <a href="https://www.gov.br/igualdaderacial/pt-br/composicao/secretaria-de-gestao-do-sistema-nacional-de-promocao-da-igualdade-racial/diretoria-de-avaliacao-monitoramento-e-gestao-da-informacao/informativos/informe-edicao-conferencias-nacionais-de-igualdade-racial.pdf" target="_blank">
-            Informe nº 4, mar. 2024 - Edição Conferências Nacionais de Igualdade Racial
-          </a>
-        </div>
-      </div>
-
-      <div class="edicao">
-        <img src="https://sc.movimentoods.org.br/wp-content/uploads/2024/10/planeta_ods_18.png" alt="Informe 5">
-        <div class="edicao-texto">
-          <a href="#" target="_blank">
-            Informe nº 5, out. 2024 - Edição ODS 18 – Igualdade Étnico-racial
-          </a>
-        </div>
-      </div>
-
-      <div class="edicao">
-        <img src="https://reporterceara.com.br/wp-content/uploads/2025/03/Com-um-cenario-natural-privilegiado-a-Serra-do-Estevao-atrai-turistas-que-buscam-experiencias-diferenciadas-23.jpg" alt="Informe 6">
-        <div class="edicao-texto">
-          <a href="#" target="_blank">
-            Informe nº 6, mar. 2025 - Edição Disseminação de Dados e Informações para Promoção da Igualdade Racial
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Calendário de Futuras Divulgações</h2>
-      <ul>
-        <li>Informe nº 7 - Junho 2025</li>
-        <li>Informe nº 8 - Setembro 2025</li>
-        <li>Informe nº 9 - Dezembro 2025</li>
-      </ul>
-    </section>
-
-    <div class="voltar-container">
-      <button onclick="voltar()">← Voltar para a página inicial</button>
+    <!-- Seção Informes -->
+    <div class="section-header">
+      <h2 class="section-title">Edições do Informe MIR</h2>
+      <p class="section-subtitle">Documentos informativos que disseminam conhecimento sobre promoção da igualdade racial e combate às desigualdades, elaborados pela DAMGI com dados e pesquisas qualificadas</p>
     </div>
+
+    <div class="card-grid">
+      <div class="card card-azul">
+        <div class="card-header"></div>
+        <div class="card-content">
+          <span class="card-category">DADOS</span>
+          <h3 class="card-title">Informe nº 6 - Disseminação de Dados para Igualdade Racial</h3>
+          <div class="card-date">
+            <i class="fas fa-calendar-alt"></i> Março 2025
+          </div>
+          <p class="card-text">Análise aprofundada dos principais indicadores sobre igualdade racial no Brasil com base nos dados mais recentes do Censo Demográfico e outras fontes oficiais.</p>
+          <a href="#" class="card-link">
+            <i class="fas fa-download"></i> Acessar
+          </a>
+        </div>
+      </div>
+
+      <div class="card card-verde">
+        <div class="card-header"></div>
+        <div class="card-content">
+          <span class="card-category">ODS</span>
+          <h3 class="card-title">Informe nº 5 - ODS 18: Igualdade Étnico-racial</h3>
+          <div class="card-date">
+            <i class="fas fa-calendar-alt"></i> Outubro 2024
+          </div>
+          <p class="card-text">Análise detalhada dos Objetivos de Desenvolvimento Sustentável com foco específico na igualdade racial e políticas públicas correlatas.</p>
+          <a href="#" class="card-link">
+            <i class="fas fa-book-open"></i> Acessar
+          </a>
+        </div>
+      </div>
+
+      <div class="card card-vermelho">
+        <div class="card-header"></div>
+        <div class="card-content">
+          <span class="card-category">CONAPIR</span>
+          <h3 class="card-title">Informe nº 4 - Edição Conferências Nacionais</h3>
+          <div class="card-date">
+            <i class="fas fa-calendar-alt"></i> março 2024
+          </div>
+          <p class="card-text">Indicadores completos sobre as edições anteriores das Conferências Nacionais de Igualdade Racial e seus desdobramentos.</p>
+          <a href="#" class="card-link">
+            <i class="fas fa-external-link-alt"></i> Acessar
+          </a>
+        </div>
+      </div>
+      
+      <div class="card card-azul">
+        <div class="card-header"></div>
+        <div class="card-content">
+          <span class="card-category">CENSO</span>
+          <h3 class="card-title">Informe nº 3 - Edição Censo Demográfico 2022</h3>
+          <div class="card-date">
+            <i class="fas fa-calendar-alt"></i> Fevereiro 2024
+          </div>
+          <p class="card-text">Análise exclusiva dos indicadores do Censo Demográfico com recorte racial detalhado e comparações históricas.</p>
+          <a href="#" class="card-link">
+            <i class="fas fa-external-link-alt"></i> Acessar
+          </a>
+        </div>
+      </div>
+      
+      <div class="card card-verde">
+        <div class="card-header"></div>
+        <div class="card-content">
+          <span class="card-category">SAÚDE</span>
+          <h3 class="card-title">Informe nº 2 - Saúde da População Negra</h3>
+          <div class="card-date">
+            <i class="fas fa-calendar-alt"></i> Setembro 2023
+          </div>
+          <p class="card-text">Indicadores de saúde com recorte racial completo e análise crítica das políticas públicas para mulheres negras no Brasil.</p>
+          <a href="#" class="card-link">
+            <i class="fas fa-external-link-alt"></i> Acessar
+          </a>
+        </div>
+      </div>
+      
+      <div class="card card-vermelho">
+        <div class="card-header"></div>
+        <div class="card-content">
+          <span class="card-category">QUILOMBOLAS</span>
+          <h3 class="card-title">Informe nº 1 - Edição Censo Quilombola 2022</h3>
+          <div class="card-date">
+            <i class="fas fa-calendar-alt"></i> agosto 2023
+          </div>
+          <p class="card-text">Estudo completo sobre a população Quilombola no Brasil com base nos dados mais recentes.</p>
+          <a href="#" class="card-link">
+            <i class="fas fa-external-link-alt"></i> Acessar
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção Produções Científicas -->
+    <div class="section-header">
+      <h2 class="section-title">Produções Científicas</h2>
+      <p class="section-subtitle">Artigos, pesquisas e estudos técnicos sobre igualdade racial produzidos por especialistas</p>
+    </div>
+
+    <div class="pub-list">
+      <div class="pub-item">
+        <img src="https://www.gov.br/igualdaderacial/pt-br/composicao/secretaria-de-gestao-do-sistema-nacional-de-promocao-da-igualdade-racial/diretoria-de-avaliacao-monitoramento-e-gestao-da-informacao/artigos-cientificos/CapaDossi.png/@@images/8c934c32-d67b-4cd3-818c-d47321454efa.png" alt="Publicação" class="pub-img">
+        <div class="pub-details">
+          <h3 class="pub-title">Orçamento público e promoção da igualdade racial</h3>
+          <div class="pub-meta">
+            <span><i class="fas fa-calendar-alt"></i> 2024</span>
+            <span><i class="fas fa-file-pdf"></i> PDF 2.3MB</span>
+            <span><i class="fas fa-user-edit"></i> Ana Luísa Coelho e Tatiana Silva</span>
+          </div>
+          <p class="pub-desc">Análise aprofundada sobre a centralidade do enfrentamento às desigualdades raciais no projeto de desenvolvimento brasileiro atual e nos orçamentos públicos. O estudo demonstra os desafios da implantação de um orçamento sensível a raça, destacando a lacuna de dados desagregados, o subfinanciamento de políticas específicas e os mecanismos de resistência institucional.</p>
+          <a href="#" class="pub-link">
+            <i class="fas fa-download"></i> Acessar publicação completa
+          </a>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <img src="https://www.gov.br/igualdaderacial/pt-br/composicao/secretaria-de-gestao-do-sistema-nacional-de-promocao-da-igualdade-racial/diretoria-de-avaliacao-monitoramento-e-gestao-da-informacao/artigos-cientificos/artigo-cientifico/@@images/9a551d80-bcce-4102-9caf-78c9f266cdae.jpeg" alt="Publicação" class="pub-img">
+        <div class="pub-details">
+          <h3 class="pub-title">Governança municipal de políticas públicas de igualdade racial</h3>
+          <div class="pub-meta">
+            <span><i class="fas fa-calendar-alt"></i> 2024</span>
+            <span><i class="fas fa-file-pdf"></i> PDF 2.3MB</span>
+            <span><i class="fas fa-user-edit"></i> Equipe DAMGI</span>
+          </div>
+          <p class="pub-desc">Reflexão crítica sobre a governança de políticas públicas de promoção da igualdade racial, analisando arranjos institucionais, atores envolvidos, processos decisórios e instrumentos formais e informais que têm sido utilizados para coordenação e implementação dessas políticas em nível municipal.</p>
+          <a href="#" class="pub-link">
+            <i class="fas fa-external-link-alt"></i> Acessar publicação
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção Notas Técnicas -->
+    <div class="section-header">
+      <h2 class="section-title">Notas Técnicas</h2>
+      <p class="section-subtitle">Documentos técnicos com metodologias e análises especializadas para embasar políticas públicas</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card-azul">
+        <div class="card-header"></div>
+        <div class="card-content">
+          <span class="card-category">ESTATUTO</span>
+          <h3 class="card-title">NOTA TÉCNICA SEI Nº 4/2023/SENAPIR/MIR</h3>
+          <div class="card-date">
+            <i class="fas fa-calendar-alt"></i> Agosto 2023
+          </div>
+          <p class="card-text">Análise técnica detalhada sobre a alteração da Lei 12.288/2010 (Estatuto da Igualdade Racial) para inclusão do quesito cor/raça em instrumentos de coleta de dados referentes a trabalho e emprego.</p>
+          <a href="#" class="card-link">
+            <i class="fas fa-file-alt"></i> Ver nota técnica completa
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção Bases de Dados -->
+    <div class="section-header">
+      <h2 class="section-title">Bases de Dados</h2>
+      <p class="section-subtitle">Fontes primárias de dados e indicadores sobre igualdade racial para pesquisa e análise</p>
+    </div>
+
+    <div class="pub-list">
+      <div class="pub-item">
+        <img src="https://mundogeo.com/wp-content/uploads/2019/07/microdados-do-censo.jpg" alt="Base de dados" class="pub-img">
+        <div class="pub-details">
+          <h3 class="pub-title">Microdados do Censo Demográfico 2022 - Recorte Racial</h3>
+          <div class="pub-meta">
+            <span><i class="fas fa-calendar-alt"></i> Novembro 2024</span>
+            <span><i class="fas fa-file-csv"></i> CSV, XLSX</span>
+            <span><i class="fas fa-database"></i> 1.2GB</span>
+          </div>
+          <p class="pub-desc">Versão tratada e organizada dos microdados do Censo Demográfico 2022 com variáveis específicas para análise racial, incluindo cruzamentos por gênero, território e faixa etária.</p>
+          <a href="#" class="pub-link">
+            <i class="fas fa-download"></i> Baixar conjunto de dados
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-creditos">
+      <p>© 2024 Ministério da Igualdade Racial - Todos os direitos reservados</p>
+  </div>
+  
   </main>
 
   <script>
-    function voltar() {
-      window.location.href = "index.html";
-    }
+    // Animação Premium para os elementos
+    document.addEventListener('DOMContentLoaded', function() {
+      const animateElements = document.querySelectorAll('.card, .pub-item');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      });
+      
+      animateElements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        observer.observe(el);
+      });
+
+      // Efeito de digitação no título
+      const titulo = document.querySelector('.titulo');
+      if (titulo) {
+        const textoOriginal = titulo.textContent;
+        titulo.textContent = '';
+        let i = 0;
+        const typingEffect = setInterval(() => {
+          if (i < textoOriginal.length) {
+            titulo.textContent += textoOriginal.charAt(i);
+            i++;
+          } else {
+            clearInterval(typingEffect);
+          }
+        }, 50);
+      }
+    });
   </script>
 </body>
-
 </html>

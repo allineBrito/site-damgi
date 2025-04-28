@@ -4,225 +4,604 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Informes MIR</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Painéis BI - MIR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    body {
+
+        :root {
+      --namora-escuro: #4A2712;             --namora-cafe: #5C2D00;               --bogo: #8A858F;                      --amarelo-mel: #D46B00;               --vermelho-guara: #990000;            --azul-atlantico: #0C3B8B;            --amarelo-sol: #D4B000;               --verde-guarizo: #007A00;             --laranja-coral: #CC3300;             --rosa-manga: #D4599A;                --vermelho-urucum: #CC0000;           --verde-amadriba: #00A800;            
+            --gradient-1: linear-gradient(135deg, var(--azul-atlantico), var(--verde-guarizo));
+      --gradient-2: linear-gradient(135deg, var(--amarelo-mel), var(--vermelho-guara));
+      --gradient-3: linear-gradient(135deg, var(--rosa-manga), var(--laranja-coral));
+      
+            --texto-escuro: #2E2E2E;
+      --texto-medio: #555555;
+      --texto-claro: #777777;
+    }
+    
+        * {
       margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f8f3ef;
-      color: #3a2b23;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #f9f9f9;
+      color: var(--texto-escuro);
+      line-height: 1.7;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    .header {
-      background-color: #003366;
+        .header {
+      background: var(--laranja-coral);
       color: white;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
+      padding: 1.2rem 5vw;
       display: flex;
-      align-items: center;
-      height: 60px;
-      padding: 0 20px;
       justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      position: relative;
+      z-index: 1000;
+      border-bottom: 3px solid var(--amarelo-mel);
     }
 
     .gov-br-text {
-      text-decoration: none;
       color: white;
+      text-decoration: none;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .gov-br-text:hover {
+      color: var(--amarelo-sol);
+      transform: translateY(-2px);
+    }
+
+    .gov-br-text i {
+      font-size: 1.5rem;
+      color: var(--amarelo-sol);
     }
 
     .menu ul {
-      list-style: none;
       display: flex;
-      margin: 0;
-      padding: 0;
-    }
-
-    .menu li {
-      margin-left: 20px;
+      list-style: none;
+      gap: 2rem;
     }
 
     .menu a {
-      text-decoration: none;
       color: white;
-      font-weight: bold;
-      font-size: 14px;
-      transition: color 0.3s ease;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 0;
+      letter-spacing: 0.5px;
     }
 
     .menu a:hover {
-      color: #ffcc00;
+      color: var(--amarelo-sol);
     }
 
-    /* Submenu */
-    .submenu {
-      background-color: #f2f2f2;
-      padding: 10px 8vw;
-      position: fixed;
-      top: 60px;
+    .menu a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      background: var(--amarelo-sol);
+      bottom: 0;
+      left: 0;
+      transition: width 0.4s ease;
+      border-radius: 3px;
+    }
+
+    .menu a:hover::after {
       width: 100%;
-      z-index: 1001;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    .submenu ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+        .submenu {
+      background: var(--namora-cafe);
+      padding: 1.2rem 5vw;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+      border-bottom: 3px solid var(--amarelo-mel);
+    }
+
+    .submenu-nav ul {
       display: flex;
+      list-style: none;
+      justify-content: center;
+      gap: 2.5rem;
       flex-wrap: wrap;
-      gap: 15px;
     }
 
-    .submenu li a {
+    .submenu-nav li a {
       text-decoration: none;
-      color: #050505;
-      font-weight: bold;
-      font-size: 14px;
-      transition: color 0.3s ease;
-    }
-
-    .submenu li a:hover {
-      color: #ffcc00;
-    }
-
-    main {
-      padding: 140px 8vw 4rem;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0;
       position: relative;
+      transition: all 0.4s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .submenu-nav li a i {
+      font-size: 1rem;
+      color: var(--amarelo-sol);
+      transition: transform 0.3s ease;
+    }
+
+    .submenu-nav li a:hover {
+      color: var(--amarelo-sol);
+    }
+
+    .submenu-nav li a:hover i {
+      transform: translateX(5px);
+    }
+
+    .submenu-nav li a::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      background: var(--amarelo-sol);
+      bottom: 0;
+      left: 0;
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+
+    .submenu-nav li a:hover::before {
+      width: 100%;
+    }
+
+        .hero {
+      position: relative;
+      height: 50vh;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(rgba(74, 39, 18, 0.85), rgba(74, 39, 18, 0.9)), 
+                  url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      margin-bottom: 5rem;
+      overflow: hidden;
+      padding: 0 5vw;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(212, 107, 0, 0.25), transparent 60%),
+                  radial-gradient(circle at 80% 70%, rgba(0, 122, 0, 0.2), transparent 60%);
+      animation: float 12s infinite alternate ease-in-out;
       z-index: 1;
     }
 
-    .titulo {
-      font-size: 2rem;
-      text-align: center;
-      margin: 2rem 0;
-      color: #4e342e;
+    @keyframes float {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-20px, -10px) rotate(-2deg); }
+      100% { transform: translate(10px, 5px) rotate(1deg); }
     }
 
-    section {
+    .title-container {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .titulo {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      color: white;
+    }
+
+    .titulo-destaque {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: rgba(74, 39, 18, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 50px;
+      border: 2px solid var(--amarelo-mel);
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: white;
+      max-width: 800px;
+      line-height: 1.6;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+        main {
+      padding: 2rem 8vw 6rem;
+      flex: 1;
+    }
+
+        .section-header {
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      color: var(--namora-escuro);
+      margin-bottom: 1rem;
+      position: relative;
+      font-weight: 800;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 6px;
+      background: var(--gradient-2);
+      bottom: -15px;
+      left: 0;
+      border-radius: 6px;
+    }
+
+    .section-text {
+      font-size: 1.1rem;
+      color: var(--texto-medio);
+      max-width: 800px;
+      line-height: 1.7;
       margin-bottom: 2rem;
     }
 
-    h2 {
-      color: #5e3f2c;
-      margin-bottom: 0.8rem;
-      border-bottom: 2px solid #d2bba0;
-      padding-bottom: 0.4rem;
+        .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 6rem;
     }
 
-    .edicao {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 1.5rem;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    .card {
+      border-radius: 16px;
       overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: white;
+      border: none;
+      position: relative;
     }
 
-    .edicao img {
-      width: 150px;
-      height: 100px;
+    .card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 25px 60px rgba(74, 39, 18, 0.2);
+    }
+
+    .card-header {
+      height: 10px;
+      background: var(--gradient-1);
+      transition: all 0.5s ease;
+    }
+
+    .card:hover .card-header {
+      height: 15px;
+    }
+
+    .card-content {
+      padding: 2rem;
+      position: relative;
+    }
+
+    .card-title {
+      font-size: 1.6rem;
+      color: var(--azul-atlantico);
+      margin-bottom: 1rem;
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .card-text {
+      font-size: 1rem;
+      color: var(--texto-medio);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 220px;
       object-fit: cover;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      transition: transform 0.5s ease;
     }
 
-    .edicao-texto {
-      padding: 1rem;
+    .card:hover .card-img {
+      transform: scale(1.05);
     }
 
-    .edicao-texto a {
-      color: #003366;
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      font-weight: 600;
       text-decoration: none;
-      font-weight: bold;
+      transition: all 0.4s ease;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      background: var(--gradient-1);
+      box-shadow: 0 5px 15px rgba(12, 59, 139, 0.3);
     }
 
-    .edicao-texto a:hover {
+    .card-link:hover {
+      gap: 15px;
+      transform: translateX(8px);
+      box-shadow: 0 8px 25px rgba(12, 59, 139, 0.4);
+      background: var(--gradient-2);
+    }
+
+    .card-link i {
+      transition: transform 0.3s ease;
+    }
+
+    .card-link:hover i {
+      transform: translateX(5px);
+    }
+
+        .voltar-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 1rem 2rem;
+      background: var(--gradient-3);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 5px 15px rgba(212, 89, 154, 0.3);
+      margin-top: 2rem;
+    }
+
+    .voltar-btn:hover {
+      background: var(--gradient-2);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(212, 107, 0, 0.4);
+    }
+
+    .voltar-btn i {
+      transition: transform 0.3s ease;
+    }
+
+    .voltar-btn:hover i {
+      transform: translateX(-5px);
+    }
+
+        .footer-institucional {
+      background: var(--azul-atlantico);
+      color: white;
+      padding: 3rem 5vw;
+      font-size: 0.9rem;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-coluna h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-coluna h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--amarelo-mel);
+    }
+
+    .footer-coluna ul {
+      list-style: none;
+    }
+
+    .footer-coluna li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-coluna a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .footer-coluna a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .footer-coluna a i {
+      margin-right: 8px;
+      color: var(--amarelo-mel);
+    }
+
+    .footer-creditos {
+      background: var(--azul-atlantico-escuro);
+      padding: 1.5rem 5vw;
+      text-align: center;
+      color: rgba(12, 12, 12, 0.7);
+      font-size: 0.85rem;
+    }
+
+    .footer-creditos a {
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-creditos a:hover {
+      color: var(--amarelo-mel);
       text-decoration: underline;
     }
 
-    .voltar-container {
-      margin-top: 3rem;
-      text-align: center;
+        @media (max-width: 1200px) {
+      .hero {
+        height: 45vh;
+      }
+      
+      .titulo {
+        font-size: 3rem;
+      }
     }
-
-    .voltar-container button {
-      padding: 10px 25px;
-      background-color: #5e3f2c;
-      color: white;
-      font-size: 1rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s ease;
+    
+    @media (max-width: 992px) {
+      .hero {
+        height: 40vh;
+        min-height: 350px;
+      }
+      
+      .titulo {
+        font-size: 2.5rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
     }
-
-    .voltar-container button:hover {
-      background-color: #7b5642;
+    
+    @media (max-width: 768px) {
+      .hero {
+        height: auto;
+        padding: 6rem 0;
+        clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+      }
+      
+      .titulo {
+        font-size: 2.2rem;
+      }
+      
+      .titulo-destaque {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.5rem;
+      }
+      
+      .submenu-nav ul {
+        gap: 1.5rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
     }
+    
+    @media (max-width: 576px) {
+      .hero {
+        padding: 5rem 0;
+      }
+      
+      .titulo {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 1.6rem;
+      }
+      
+      .voltar-btn {
+        width: 100%;
+        justify-content: center;
+      }
 
-    /* Painéis */
-    .painel {
-      background-color: #ffffff;
-      border-left: 8px solid #003366;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
     }
-
-    .painel:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-    }
-
-    .painel h2 {
-      color: #003366;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .painel p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #4e342e;
-      margin-bottom: 1rem;
-    }
-
-    .painel img {
-      width: 100%;
-      max-height: 250px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-
-    .painel a {
+    .status-badge {
       display: inline-block;
-      margin-top: 0.5rem;
-      padding: 10px 20px;
-      background-color: #003366;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 6px;
-      transition: background 0.3s ease;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-left: 1rem;
+      vertical-align: middle;
     }
-
-    .painel a:hover {
-      background-color: #002244;
+    
+    .badge-disponivel {
+      background-color: #28a745;
+      color: white;
+    }
+    
+    .badge-desenvolvimento {
+      background-color: #ffc107;
+      color: #212529;
+    }
+    
+    .badge-planejado {
+      background-color: #17a2b8;
+      color: white;
+    }
+    
+    .documentacao-item {
+      background: white;
+      border-left: 4px solid var(--azul-atlantico);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    
+    .documentacao-item h3 {
+      margin-top: 0;
+      color: var(--azul-atlantico);
     }
   </style>
+
 </head>
 
 <body>
   <header class="header">
-    <a href="https://www.gov.br" target="_blank" class="gov-br-text">gov.br</a>
+    <a href="https://www.gov.br" target="_blank" class="gov-br-text">
+      <i class="fas fa-landmark"></i> gov.br
+    </a>
     <nav class="menu">
       <ul>
         <li><a href="#">COMUNICA BR</a></li>
@@ -236,33 +615,263 @@
 
   <!-- Submenu -->
   <nav class="submenu">
-    <ul>
-      <li><a href="index.html">Início</a></li>
-      <li><a href="informes.html">Informes MIR</a></li>
-      <li><a href="atir.html">ATIR</a></li>
-      <li><a href="norma.html">Normativos</a></li>
-      <li><a href="paineis.html">Painéis</a></li>
-      <li><a href="data.html">Data SINAPIR</a></li>
-    </ul>
+    <nav class="submenu-nav">
+      <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Início</a></li>
+        <li><a href="informes.html"><i class="fas fa-newspaper"></i> Publicações</a></li>
+        <li><a href="atir.html"><i class="fas fa-chart-line"></i> ATIR</a></li>
+        <li><a href="norma.html"><i class="fas fa-gavel"></i> Normativos</a></li>
+        <li><a href="paineis.html"><i class="fas fa-chart-pie"></i> Painéis</a></li>
+        <li><a href="data.html"><i class="fas fa-database"></i> Data SINAPIR</a></li>
+      </ul>
+    </nav>
   </nav>
 
-  <main>
-    <h1 class="titulo">Painéis de Monitoramento</h1>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="title-container">
+      <h1 class="titulo">PAINÉIS DE BUSINESS INTELLIGENCE</h1>
+      <div class="titulo-destaque">
+        Visualizações interativas de dados para monitoramento e avaliação de políticas de igualdade racial
+      </div>
+    </div>
+  </section>
 
-    <div class="painel painel-covid">
-      <h2>Painel - Plano de Enfrentamento à Covid-19 - População Quilombola (ADPF 742)</h2>
-      <p>Este painel apresenta dados do Plano de Enfrentamento à Covid-19 voltado para a população quilombola, conforme a Arguição de Descumprimento de Preceito Fundamental (ADPF) 742. A ferramenta permite o acompanhamento de metas, distribuição de recursos e medidas adotadas em parceria com os estados e municípios.</p>
-      <img src="https://neilpatel.com/wp-content/uploads/2019/05/ilustracao-sobre-o-error-404-not-found-1200x675.jpeg">
-      <a href="https://app.powerbi.com/view?r=eyJrIjoiMjczOTMwYjYtYTlhMy00NzUwLTliZTItNmRhNTg2MDg3NmNhIiwidCI6IjAxYTI1MzViLWI5YmUtNDI3MC05Yjc1LWJlY2M1NDY5MmI0ZiJ9" target="_blank">Acessar o painel</a>
+  <main>
+    <div class="section-header">
+      <h2 class="section-title">Painéis Disponíveis</h2>
+      <p class="section-text">
+        Painéis completos e em funcionamento para análise de dados sobre igualdade racial.
+      </p>
     </div>
 
-    <div class="painel painel-sinapir">
-      <h2>Painel - SINAPIR (Sistema Nacional de Promoção da Igualdade Racial)</h2>
-      <p>Este painel traz informações atualizadas sobre a adesão de entes federativos ao SINAPIR, ações desenvolvidas, estrutura de governança e dados sobre políticas públicas voltadas para a promoção da igualdade racial no Brasil.</p>
-      <img src="https://neilpatel.com/wp-content/uploads/2019/05/ilustracao-sobre-o-error-404-not-found-1200x675.jpeg" alt="Imagem do Painel SINAPIR">
-      <a href="https://app.powerbi.com/view?r=eyJrIjoiZDhiMDlmZjMtY2I2NC00MzNjLTliZjktMDkxYjk2M2FkYjQ4IiwidCI6IjAxYTI1MzViLWI5YmUtNDI3MC05Yjc1LWJlY2M1NDY5MmI0ZiJ9" target="_blank">Acessar o painel</a>
+    <div class="card-grid">
+      <!-- Painel JurisRacial -->
+      <div class="card">
+        <div class="card-header"></div>
+        <div class="card-content">
+          <img src="https://www.gov.br/agu/pt-br/comunicacao/noticias/repositorio-juridico-ajudara-no-enfrentamento-ao-racismo-1/jurisracial5.png" alt="Painel JurisRacial" class="card-img">
+          <h3 class="card-title">JurisRacial <span class="status-badge badge-disponivel">DISPONÍVEL</span></h3>
+          <p class="card-text">
+            Painel de monitoramento de decisões judiciais relacionadas a questões raciais. Inclui análise por tribunal, tema, período e resultados, com recorte racial detalhado.
+          </p>
+          <a href="#" class="card-link">
+            <i class="fas fa-external-link-alt"></i> Acessar Painel
+          </a>
+        </div>
+      </div>
+
+      <!-- Painel SINAPIR -->
+      <div class="card">
+        <div class="card-header"></div>
+        <div class="card-content">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNAYEZBNNeM3MAfmXcLdAARFDx0KTz565JTtBOV4tteWVRM4U0mU-42oZSQ7JlIGBIm4M&usqp=CAU" alt="Painel SINAPIR" class="card-img">
+          <h3 class="card-title">SINAPIR <span class="status-badge badge-disponivel">DISPONÍVEL</span></h3>
+          <p class="card-text">
+            Monitoramento do Sistema Nacional de Promoção da Igualdade Racial. Mostra adesão de estados e municípios, recursos investidos e políticas implementadas.
+          </p>
+          <a href="#" class="card-link">
+            <i class="fas fa-external-link-alt"></i> Acessar Painel
+          </a>
+        </div>
+      </div>
+
+      <!-- Painel Quilombolas -->
+      <div class="card">
+        <div class="card-header"></div>
+        <div class="card-content">
+          <img src="https://agenciadenoticias.ibge.gov.br/images/agenciadenoticias/ibge/2022_08/Censo-Quilombola__home_MarcioCosta.jpg" alt="Painel Quilombolas" class="card-img">
+          <h3 class="card-title">Comunidades Quilombolas <span class="status-badge badge-disponivel">DISPONÍVEL</span></h3>
+          <p class="card-text">
+            Dados sobre titulação de terras, programas sociais, saúde e educação para comunidades quilombolas. Inclui comparações regionais e temporais.
+          </p>
+          <a href="#" class="card-link">
+            <i class="fas fa-external-link-alt"></i> Acessar Painel
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção de Painéis em Desenvolvimento -->
+    <div class="section-header">
+      <h2 class="section-title">Painéis em Desenvolvimento</h2>
+      <p class="section-text">
+        Novos painéis que estão sendo construídos e serão disponibilizados em breve.
+      </p>
+    </div>
+
+    <div class="card-grid">
+      <!-- Painel Ciganos -->
+      <div class="card">
+        <div class="card-header"></div>
+        <div class="card-content">
+          <img src="https://assets.brasildefato.com.br/2024/09/image_processing20211006-12769-14vnz40.jpeg" alt="Painel Ciganos" class="card-img">
+          <h3 class="card-title">População Cigana <span class="status-badge badge-desenvolvimento">EM DESENVOLVIMENTO</span></h3>
+          <p class="card-text">
+            Painel em construção com dados sobre a população cigana no Brasil, incluindo acesso a serviços públicos, educação e indicadores sociais específicos.
+          </p>
+          <div style="color: #6c757d; font-size: 0.9rem; margin-top: 1rem;">
+            <i class="fas fa-hourglass-half"></i> Previsão de lançamento: Dezembro/2024
+          </div>
+        </div>
+      </div>
+
+      <!-- Painel Estados e Municípios -->
+      <div class="card">
+        <div class="card-header"></div>
+        <div class="card-content">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRRdqvX3p8-p19g2DTEes47LvL7Q3Oi1BINw&s" alt="Painel Estados e Municípios" class="card-img">
+          <h3 class="card-title">Estados e Municípios <span class="status-badge badge-desenvolvimento">EM DESENVOLVIMENTO</span></h3>
+          <p class="card-text">
+            Informações sobre a Munic e Estadic
+          </p>
+          <div style="color: #6c757d; font-size: 0.9rem; margin-top: 1rem;">
+            <i class="fas fa-hourglass-half"></i> Previsão de lançamento: Janeiro/2025
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção de Painéis Planejados -->
+    <div class="section-header">
+      <h2 class="section-title">Painéis Planejados</h2>
+      <p class="section-text">
+        Próximos painéis que estão em fase de planejamento e serão desenvolvidos posteriormente.
+      </p>
+    </div>
+
+    <div class="card-grid">
+      <!-- Painel ODS Racial -->
+      <div class="card">
+        <div class="card-header"></div>
+        <div class="card-content">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Painel ODS Racial" class="card-img">
+          <h3 class="card-title">ODS Racial <span class="status-badge badge-planejado">PLANEJADO</span></h3>
+          <p class="card-text">
+            Monitoramento dos Objetivos de Desenvolvimento Sustentável com análise específica de desigualdades raciais. Metas e indicadores desagregados por cor/raça.
+          </p>
+          <div style="color: #6c757d; font-size: 0.9rem; margin-top: 1rem;">
+            <i class="fas fa-clock"></i> Em fase de levantamento de requisitos
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seção de Documentação e Bases de Dados -->
+    <div class="section-header">
+      <h2 class="section-title">Documentação e Bases de Dados</h2>
+      <p class="section-text">
+        Materiais de referência e conjuntos de dados utilizados nos painéis.
+      </p>
+    </div>
+
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div class="documentacao-item">
+        <h3>Manual do Usuário</h3>
+        <p>Guia completo com instruções para utilização dos painéis, explicação sobre indicadores e funcionalidades avançadas.</p>
+        <a href="#" class="card-link" style="display: inline-block; margin-top: 0.5rem;">
+          <i class="fas fa-file-pdf"></i> Baixar Documentação
+        </a>
+      </div>
+      
+      <div class="documentacao-item">
+        <h3>Bases de Dados Abertos</h3>
+        <p>Conjuntos de dados completos utilizados nos painéis, em formatos abertos para análise e pesquisa.</p>
+        <div style="margin-top: 1rem;">
+          <a href="#" class="card-link" style="display: inline-block; margin-right: 1rem;">
+            <i class="fas fa-database"></i> Dados JurisRacial
+          </a>
+          <a href="#" class="card-link" style="display: inline-block;">
+            <i class="fas fa-database"></i> Dados SINAPIR
+          </a>
+        </div>
+      </div>
+      
+      <div class="documentacao-item">
+        <h3>Metodologia e Indicadores</h3>
+        <p>Documentação técnica sobre a construção dos indicadores, fórmulas de cálculo e fontes de dados.</p>
+        <a href="#" class="card-link" style="display: inline-block; margin-top: 0.5rem;">
+          <i class="fas fa-file-alt"></i> Acessar Metodologia
+        </a>
+      </div>
+    </div>
+
     </div>
   </main>
-</body>
 
+  <!-- Rodapé Institucional -->
+  <footer class="footer-institucional">
+    <div class="footer-container">
+      <div class="footer-coluna">
+        <h3>gov.br</h3>
+        <ul>
+          <li><a href="https://www.gov.br/pt-br"><i class="fas fa-chevron-right"></i> Página inicial</a></li>
+          <li><a href="https://www.gov.br/pt-br/acesso-a-informacao"><i class="fas fa-chevron-right"></i> Acesso à informação</a></li>
+          <li><a href="https://www.gov.br/pt-br/participacao-social"><i class="fas fa-chevron-right"></i> Participe</a></li>
+          <li><a href="https://www.gov.br/pt-br/legislacao"><i class="fas fa-chevron-right"></i> Legislação</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-coluna">
+        <h3>Acesso à informação</h3>
+        <ul>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/acesso-a-informacao"><i class="fas fa-chevron-right"></i> Acesso à informação no MIR</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/acesso-a-informacao/ouvidoria"><i class="fas fa-chevron-right"></i> Ouvidoria</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/acesso-a-informacao/perguntas-frequentes"><i class="fas fa-chevron-right"></i> Perguntas frequentes</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-coluna">
+        <h3>Assuntos</h3>
+        <ul>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/noticias"><i class="fas fa-chevron-right"></i> Notícias</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/acoes-e-programas"><i class="fas fa-chevron-right"></i> Ações e programas</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/publicacoes"><i class="fas fa-chevron-right"></i> Publicações</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/conferencias"><i class="fas fa-chevron-right"></i> Conferências</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-coluna">
+        <h3>Canais</h3>
+        <ul>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/fale-conosco"><i class="fas fa-chevron-right"></i> Fale conosco</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/imprensa"><i class="fas fa-chevron-right"></i> Imprensa</a></li>
+          <li><a href="https://www.youtube.com/c/MinisteriodaMulherdaFamiliaeDosDireitosHumanos"><i class="fas fa-chevron-right"></i> YouTube</a></li>
+          <li><a href="https://www.instagram.com/igualdaderacial/"><i class="fas fa-chevron-right"></i> Instagram</a></li>
+          <li><a href="https://twitter.com/igualdaderacial"><i class="fas fa-chevron-right"></i> Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div class="footer-creditos">
+    <p>© 2024 Ministério da Igualdade Racial - Todos os direitos reservados</p>
+  </div>
+
+  <script>
+    // Animação para os cards
+    document.addEventListener('DOMContentLoaded', function() {
+      const animateElements = document.querySelectorAll('.card');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      });
+      
+      animateElements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
 </html>

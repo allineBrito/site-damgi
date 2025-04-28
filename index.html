@@ -2,213 +2,446 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>teste</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Estilos do submenu para corresponder ao segundo código */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data SINAPIR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+        :root {
+      --namora-escuro: #4A2712;             --namora-cafe: #5C2D00;               --bogo: #8A858F;                      --amarelo-mel: #D46B00;               --vermelho-guara: #990000;            --azul-atlantico: #0C3B8B;            --amarelo-sol: #D4B000;               --verde-guarizo: #007A00;             --laranja-coral: #CC3300;             --rosa-manga: #D4599A;                --vermelho-urucum: #CC0000;           --verde-amadriba: #00A800;            
+            --gradient-1: linear-gradient(135deg, var(--azul-atlantico), var(--verde-guarizo));
+      --gradient-2: linear-gradient(135deg, var(--amarelo-mel), var(--vermelho-guara));
+      --gradient-3: linear-gradient(135deg, var(--rosa-manga), var(--laranja-coral));
+      
+            --texto-escuro: #2E2E2E;
+      --texto-medio: #555555;
+      --texto-claro: #777777;
+    }
+    
+        * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #f9f9f9;
+      color: var(--texto-escuro);
+      line-height: 1.7;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+        .header {
+      background: var(--laranja-coral);
+      color: white;
+      padding: 1.2rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      position: relative;
+      z-index: 1000;
+      border-bottom: 3px solid var(--amarelo-mel);
+    }
+
+    .gov-br-text {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .gov-br-text:hover {
+      color: var(--amarelo-sol);
+      transform: translateY(-2px);
+    }
+
+    .gov-br-text i {
+      font-size: 1.5rem;
+      color: var(--amarelo-sol);
+    }
+
+    .menu ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 0;
+      letter-spacing: 0.5px;
+    }
+
+    .menu a:hover {
+      color: var(--amarelo-sol);
+    }
+
+    .menu a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      background: var(--amarelo-sol);
+      bottom: 0;
+      left: 0;
+      transition: width 0.4s ease;
+      border-radius: 3px;
+    }
+
+    .menu a:hover::after {
+      width: 100%;
+    }
+
         .submenu {
-            background-color: #f2f2f2;
-            padding: 10px 8vw;
-            position: fixed;
-            top: 60px; /* logo abaixo do header */
-            width: 100%;
-            z-index: 999;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+      background: var(--namora-cafe);
+      padding: 1.2rem 5vw;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+      border-bottom: 3px solid var(--amarelo-mel);
+    }
 
-        .submenu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
+    .submenu-nav ul {
+      display: flex;
+      list-style: none;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
 
-        .submenu li a {
-            text-decoration: none;
-            color: #050505;
-            font-weight: bold;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
+    .submenu-nav li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: all 0.4s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .submenu li a:hover {
-            color: #ffcc00;
-        }
+    .submenu-nav li a i {
+      font-size: 1rem;
+      color: var(--amarelo-sol);
+      transition: transform 0.3s ease;
+    }
 
-        /* Ajuste no main para compensar o submenu fixo */
+    .submenu-nav li a:hover {
+      color: var(--amarelo-sol);
+    }
+
+    .submenu-nav li a:hover i {
+      transform: translateX(5px);
+    }
+
+    .submenu-nav li a::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      background: var(--amarelo-sol);
+      bottom: 0;
+      left: 0;
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+
+    .submenu-nav li a:hover::before {
+      width: 100%;
+    }
+
         main {
-            padding-top: 120px; /* header + submenu */
-        }
-    </style>
+      padding: 2rem 8vw 6rem;
+      flex: 1;
+    }
+
+        .section-header {
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      color: var(--namora-escuro);
+      margin-bottom: 1rem;
+      position: relative;
+      font-weight: 800;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 6px;
+      background: var(--gradient-3);
+      bottom: -15px;
+      left: 0;
+      border-radius: 6px;
+    }
+
+    .section-text {
+      font-size: 1.1rem;
+      color: var(--texto-medio);
+      max-width: 800px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+        .content-section {
+      margin-bottom: 3rem;
+      border: 1px solid #ddd;
+      padding: 2rem;
+      border-left: 6px solid var(--rosa-manga);
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .content-section h2 {
+      margin-top: 0;
+      color: var(--namora-escuro);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .content-section p {
+      font-size: 1rem;
+      color: var(--texto-medio);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-left: 1rem;
+      vertical-align: middle;
+    }
+    
+  
+
+        .footer-institucional {
+      background: var(--azul-atlantico);
+      color: white;
+      padding: 3rem 5vw;
+      font-size: 0.9rem;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-coluna h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-coluna h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--amarelo-mel);
+    }
+
+    .footer-coluna ul {
+      list-style: none;
+    }
+
+    .footer-coluna li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-coluna a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .footer-coluna a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .footer-coluna a i {
+      margin-right: 8px;
+      color: var(--amarelo-mel);
+    }
+
+    .footer-creditos {
+      background: var(--azul-atlantico);
+      padding: 1.5rem 5vw;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.85rem;
+    }
+
+    .footer-creditos a {
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-creditos a:hover {
+      color: var(--amarelo-mel);
+      text-decoration: underline;
+    }
+
+        @media (max-width: 992px) {
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .submenu-nav ul {
+        gap: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .section-title {
+        font-size: 1.6rem;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <header class="header">
-        <a href="https://www.gov.br" target="_blank" class="gov-br-text">gov.br</a>
-        <nav class="menu">
-            <ul>
-                <li><a href="#comunicacao">COMUNICA BR</a></li>
-                <li><a href="#informacao">ACESSO À INFORMAÇÃO</a></li>
-                <li><a href="#participacao">PARTICIPE</a></li>
-                <li><a href="#legislacao">LEGISLAÇÃO</a></li>
-                <li><a href="#orgaos">ÓRGÃOS DO GOVERNO</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Submenu atualizado -->
-    <nav class="submenu">
-        <ul>
-            <li><a href="index.html">Início</a></li>
-            <li><a href="informes.html">Informes MIR</a></li>
-            <li><a href="atir.html">ATIR</a></li>
-            <li><a href="norma.html">Normativos</a></li>
-            <li><a href="paineis.html">Painéis</a></li>
-            <li><a href="data.html">Data SINAPIR</a></li>
-        </ul>
+  <header class="header">
+    <a href="https://www.gov.br" target="_blank" class="gov-br-text">
+      <i class="fas fa-landmark"></i> gov.br
+    </a>
+    <nav class="menu">
+      <ul>
+        <li><a href="#">COMUNICA BR</a></li>
+        <li><a href="#">ACESSO À INFORMAÇÃO</a></li>
+        <li><a href="#">PARTICIPE</a></li>
+        <li><a href="#">LEGISLAÇÃO</a></li>
+        <li><a href="#">ÓRGÃOS DO GOVERNO</a></li>
+      </ul>
     </nav>
+  </header>
 
-    <main class="content">
-        <div class="title-container">
-            <h1 class="titulo">OBSERVATÓRIO DE MONITORAMENTO E AVALIAÇÃO</h1>
-        </div>
+  <!-- Submenu -->
+  <nav class="submenu">
+    <nav class="submenu-nav">
+      <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Início</a></li>
+        <li><a href="informes.html"><i class="fas fa-newspaper"></i>Publicações</a></li>
+        <li><a href="atir.html"><i class="fas fa-chart-line"></i> ATIR</a></li>
+        <li><a href="norma.html"><i class="fas fa-gavel"></i> Normativos</a></li>
+        <li><a href="paineis.html"><i class="fas fa-chart-pie"></i> Painéis</a></li>
+        <li><a href="data.html"><i class="fas fa-database"></i> Data SINAPIR</a></li>
+      </ul>
+    </nav>
+  </nav>
 
-        <section class="sinapir-section">
-            <div class="sinapir-texto">
-                <h2>PAINEL SINAPIR</h2>
-                <p>O Painel de BI do Sinapir é uma ferramenta interativa que apresenta dados e análises sobre a implementação do Sistema Nacional de Promoção da Igualdade Racial, auxiliando gestores e pesquisadores no acompanhamento das políticas públicas.</p>
-                
-                <!-- Link "Clique aqui" agora abaixo do texto -->
-                <a href="https://link-do-painel-do-bi.com" class="clique-aqui">Clique aqui para acessar o painel de BI</a>
-            </div>
-            
-            <div class="sinapir-imagem">
-                <img src="https://ckzdiversidade.com.br/wp-content/uploads/2020/06/dashboard.png" alt="Imagem da seção SINAPIR" class="sinapir-img">
-            </div>
-            
-        </section>
+  <main>
+    <div class="section-header">
+      <h1 class="section-title">Data SINAPIR</h1>
+    </div>
 
-        <section class="hub-igualdade-racial">
-            <div class="hub-introducao">
-                <h2>Hub de Igualdade Racial</h2>
-                <p>O Hub de Igualdade Racial é uma plataforma dedicada ao acesso e disseminação de informações sobre ações e políticas públicas voltadas à promoção da igualdade racial no Brasil.</p>
-            </div>
+    <div class="content-section">
+      <h2>Censo SINAPIR </span></h2>
+      <p>
+        Informações sobre os entes federativos que aderiram ao Sistema Nacional de Promoção da Igualdade Racial – SINAPIR.
+      </p>
+    </div>
 
-            <div class="hub-conteudo">
-                <!-- Censo -->
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhSJnrXbjnxhtsswfQUB-4577oIzic_UxYUQ&s" alt="Censo">
-                    <h3>Censo</h3>
-                    <p>Informações detalhadas sobre o censo da população, com ênfase nos dados relacionados à igualdade racial.</p>
-                    <a href="#" class="card-link">Saiba mais</a>
-                </div>
+    <div class="content-section">
+      <h2>Plano de Enfrentamento ao Racismo </span></h2>
+      <p>
+        Dados e indicadores sobre a implementação do Plano Nacional de Enfrentamento ao Racismo em diferentes regiões do país,
+        com monitoramento de metas e resultados alcançados.
+      </p>
+    </div>
+  </main>
 
-                <!-- Violência -->
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhSJnrXbjnxhtsswfQUB-4577oIzic_UxYUQ&s" alt="Violência">
-                    <h3>Violência</h3>
-                    <p>Estudos e dados sobre a violência racial no Brasil, com relatórios e análises de segurança pública e discriminação racial.</p>
-                    <a href="#" class="card-link">Saiba mais</a>
-                </div>
+  <!-- Rodapé Institucional -->
+  <footer class="footer-institucional">
+    <div class="footer-container">
+      <div class="footer-coluna">
+        <h3>gov.br</h3>
+        <ul>
+          <li><a href="https://www.gov.br/pt-br"><i class="fas fa-chevron-right"></i> Página inicial</a></li>
+          <li><a href="https://www.gov.br/pt-br/acesso-a-informacao"><i class="fas fa-chevron-right"></i> Acesso à informação</a></li>
+          <li><a href="https://www.gov.br/pt-br/participacao-social"><i class="fas fa-chevron-right"></i> Participe</a></li>
+          <li><a href="https://www.gov.br/pt-br/legislacao"><i class="fas fa-chevron-right"></i> Legislação</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-coluna">
+        <h3>Acesso à informação</h3>
+        <ul>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/acesso-a-informacao"><i class="fas fa-chevron-right"></i> Acesso à informação no MIR</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/acesso-a-informacao/ouvidoria"><i class="fas fa-chevron-right"></i> Ouvidoria</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/acesso-a-informacao/perguntas-frequentes"><i class="fas fa-chevron-right"></i> Perguntas frequentes</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-coluna">
+        <h3>Assuntos</h3>
+        <ul>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/noticias"><i class="fas fa-chevron-right"></i> Notícias</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/acoes-e-programas"><i class="fas fa-chevron-right"></i> Ações e programas</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/publicacoes"><i class="fas fa-chevron-right"></i> Publicações</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/conferencias"><i class="fas fa-chevron-right"></i> Conferências</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-coluna">
+        <h3>Canais</h3>
+        <ul>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/fale-conosco"><i class="fas fa-chevron-right"></i> Fale conosco</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/imprensa"><i class="fas fa-chevron-right"></i> Imprensa</a></li>
+          <li><a href="https://www.youtube.com/c/MinisteriodaMulherdaFamiliaeDosDireitosHumanos"><i class="fas fa-chevron-right"></i> YouTube</a></li>
+          <li><a href="https://www.instagram.com/igualdaderacial/"><i class="fas fa-chevron-right"></i> Instagram</a></li>
+          <li><a href="https://twitter.com/igualdaderacial"><i class="fas fa-chevron-right"></i> Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 
-                <!-- Saúde -->
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhSJnrXbjnxhtsswfQUB-4577oIzic_UxYUQ&s" alt="Saúde">
-                    <h3>Saúde</h3>
-                    <p>Ações e políticas públicas voltadas para a promoção da saúde e do bem-estar da população negra e de outras minorias raciais.</p>
-                    <a href="#" class="card-link">Saiba mais</a>
-                </div>
-
-                <!-- Educação -->
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhSJnrXbjnxhtsswfQUB-4577oIzic_UxYUQ&s" alt="Educação">
-                    <h3>Educação</h3>
-                    <p>Informações sobre a implementação de políticas públicas de igualdade racial no campo da educação, abordando acesso e qualidade.</p>
-                    <a href="#" class="card-link">Saiba mais</a>
-                </div>
-
-                <!-- Trabalho -->
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhSJnrXbjnxhtsswfQUB-4577oIzic_UxYUQ&s" alt="Trabalho">
-                    <h3>Trabalho</h3>
-                    <p>Ações para garantir a igualdade de oportunidades no mercado de trabalho, focando na inclusão da população negra e outras etnias.</p>
-                    <a href="#" class="card-link">Saiba mais</a>
-                </div>
-
-                <!-- Desenvolvimento Social -->
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhSJnrXbjnxhtsswfQUB-4577oIzic_UxYUQ&s" alt="Desenvolvimento Social">
-                    <h3>Desenvolvimento Social</h3>
-                    <p>Ações voltadas para o desenvolvimento das comunidades e fortalecimento da economia da população negra.</p>
-                    <a href="#" class="card-link">Saiba mais</a>
-                </div>
-
-                <!-- População -->
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhSJnrXbjnxhtsswfQUB-4577oIzic_UxYUQ&s" alt="População">
-                    <h3>População</h3>
-                    <p>Estudos sobre a população negra e suas condições sociais e econômicas no Brasil.</p>
-                    <a href="#" class="card-link">Saiba mais</a>
-                </div>
-
-                <!-- Setor Público -->
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhSJnrXbjnxhtsswfQUB-4577oIzic_UxYUQ&s" alt="Setor Público">
-                    <h3>Setor Público</h3>
-                    <p>Programas e políticas implementadas pelo setor público para promover a igualdade racial.</p>
-                    <a href="#" class="card-link">Saiba mais</a>
-                </div>
-
-                <!-- Recomendados -->
-                <div class="card">
-                    <img src="https://ibb.co/399nc7Mb" alt="Recomendados">
-                    <h3>Recomendados</h3>
-                    <p>Recomendações para políticas públicas voltadas à promoção da igualdade racial e ao combate ao racismo.</p>
-                    <a href="#" class="card-link">Saiba mais</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="noticias">
-            <h2>Notícias</h2>
-            <div class="noticias-grid">
-                <div class="noticia">
-                    <a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/copy2_of_noticias/gestao-e-igualdade-racial-experiencias-compartilhadas-no-encontro-nacional-de-gestores-as-e-conselheiros-as-de-promocao-da-igualdade-racial" target="_blank">
-                        <img src="https://www.gov.br/igualdaderacial/pt-br/pagina-inicial/@@govbr.institucional.tile.nitf/a911873b-a8c2-404c-9afd-3262da8caef1/@@images/77277222-7f84-447c-9fda-1b5c98d5236a.jpeg" alt="Encontro Nacional">
-                        <h3>Gestão e Igualdade Racial</h3>
-                        <p>Experiências compartilhadas no Encontro Nacional de Gestores(as).</p>
-                    </a>
-                </div>
-                <div class="noticia">
-                    <a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/copy2_of_noticias/mir-se-reune-com-conselheiros-e-representantes-dos-orgaos-da-politica-de-igualdade-racial-da-amazonia" target="_blank">
-                        <img src="https://www.gov.br/igualdaderacial/pt-br/assuntos/copy2_of_noticias/mir-mda-e-incra-assinam-portaria-conjunta-que-institui-plano-de-acao-da-agenda-nacional-de-titulacao-quilombola/20250408assinaturaportariaconjunta.jpg/@@images/22edff73-dfad-45e7-87d5-9579aa495746.jpeg" alt="Reunião MIR">
-                        <h3>MIR se reúne com conselheiros</h3>
-                        <p>Discussão de ações com representantes da Amazônia.</p>
-                    </a>
-                </div>
-                <div class="noticia">
-                    <a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/copy2_of_noticias/mir-e-correios-lancam-selo-em-homenagem-a-luiza-bairros" target="_blank">
-                        <img src="https://www.gov.br/igualdaderacial/pt-br/assuntos/copy2_of_noticias/mir-lanca-edital-para-selecao-de-liderancas-negras/20250410kalatukula_walissonbraga.jpg/@@images/97170fc3-9ddf-4524-aea4-4b0df973dafd.jpeg" alt="Selo Luiza Bairros">
-                        <h3>Selo em homenagem a Luiza Bairros</h3>
-                        <p>Correios e MIR lançam homenagem especial.</p>
-                    </a>
-                </div>
-                <div class="noticia">
-                    <a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/copy2_of_noticias/mir-e-correios-lancam-selo-em-homenagem-a-luiza-bairros" target="_blank">
-                        <img src="https://www.gov.br/igualdaderacial/pt-br/assuntos/copy2_of_noticias/mir-lanca-edital-para-selecao-de-liderancas-negras/20250410kalatukula_walissonbraga.jpg/@@images/97170fc3-9ddf-4524-aea4-4b0df973dafd.jpeg" alt="Selo Luiza Bairros">
-                        <h3>Selo em homenagem a Luiza Bairros</h3>
-                        <p>Correios e MIR lançam homenagem especial.</p>
-                    </a>
-                </div>
-            </div>
-        </section>
-        
-
-        <script src="script.js"></script>
-    </main>
+  <div class="footer-creditos">
+    <p>© 2024 Ministério da Igualdade Racial - Todos os direitos reservados</p>
+  </div>
 </body>
 </html>

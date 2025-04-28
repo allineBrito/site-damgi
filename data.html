@@ -5,127 +5,350 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Data SINAPIR</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    body {
+        :root {
+      --namora-escuro: #4A2712;             --namora-cafe: #5C2D00;               --bogo: #8A858F;                      --amarelo-mel: #D46B00;               --vermelho-guara: #990000;            --azul-atlantico: #0C3B8B;            --amarelo-sol: #D4B000;               --verde-guarizo: #007A00;             --laranja-coral: #CC3300;             --rosa-manga: #D4599A;                --vermelho-urucum: #CC0000;           --verde-amadriba: #00A800;            
+            --gradient-1: linear-gradient(135deg, var(--azul-atlantico), var(--verde-guarizo));
+      --gradient-2: linear-gradient(135deg, var(--amarelo-mel), var(--vermelho-guara));
+      --gradient-3: linear-gradient(135deg, var(--rosa-manga), var(--laranja-coral));
+      
+            --texto-escuro: #2E2E2E;
+      --texto-medio: #555555;
+      --texto-claro: #777777;
+    }
+    
+        * {
       margin: 0;
-      font-family: "Roboto", Arial, sans-serif;
-      background-color: #fff;
-      color: #333;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #f9f9f9;
+      color: var(--texto-escuro);
+      line-height: 1.7;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    header {
-      background-color: #003366;
+        .header {
+      background: var(--laranja-coral);
       color: white;
-      padding: 15px 8vw;
+      padding: 1.2rem 5vw;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: fixed;
-      top: 0;
-      width: 100%;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      position: relative;
       z-index: 1000;
+      border-bottom: 3px solid var(--amarelo-mel);
     }
 
     .gov-br-text {
-      font-weight: bold;
-      font-size: 18px;
-      text-decoration: none;
       color: white;
-    }
-
-    nav.menu ul {
-      list-style: none;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.3rem;
       display: flex;
-      gap: 20px;
-      margin: 0;
-      padding: 0;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    nav.menu a {
+    .gov-br-text:hover {
+      color: var(--amarelo-sol);
+      transform: translateY(-2px);
+    }
+
+    .gov-br-text i {
+      font-size: 1.5rem;
+      color: var(--amarelo-sol);
+    }
+
+    .menu ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .menu a {
       color: white;
       text-decoration: none;
-      font-size: 14px;
-      font-weight: bold;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 0;
+      letter-spacing: 0.5px;
     }
 
-    nav.menu a:hover {
+    .menu a:hover {
+      color: var(--amarelo-sol);
+    }
+
+    .menu a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      background: var(--amarelo-sol);
+      bottom: 0;
+      left: 0;
+      transition: width 0.4s ease;
+      border-radius: 3px;
+    }
+
+    .menu a:hover::after {
+      width: 100%;
+    }
+
+        .submenu {
+      background: var(--namora-cafe);
+      padding: 1.2rem 5vw;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+      border-bottom: 3px solid var(--amarelo-mel);
+    }
+
+    .submenu-nav ul {
+      display: flex;
+      list-style: none;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .submenu-nav li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: all 0.4s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .submenu-nav li a i {
+      font-size: 1rem;
+      color: var(--amarelo-sol);
+      transition: transform 0.3s ease;
+    }
+
+    .submenu-nav li a:hover {
+      color: var(--amarelo-sol);
+    }
+
+    .submenu-nav li a:hover i {
+      transform: translateX(5px);
+    }
+
+    .submenu-nav li a::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      background: var(--amarelo-sol);
+      bottom: 0;
+      left: 0;
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+
+    .submenu-nav li a:hover::before {
+      width: 100%;
+    }
+
+        main {
+      padding: 2rem 8vw 6rem;
+      flex: 1;
+    }
+
+        .section-header {
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      color: var(--namora-escuro);
+      margin-bottom: 1rem;
+      position: relative;
+      font-weight: 800;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 6px;
+      background: var(--gradient-3);
+      bottom: -15px;
+      left: 0;
+      border-radius: 6px;
+    }
+
+    .section-text {
+      font-size: 1.1rem;
+      color: var(--texto-medio);
+      max-width: 800px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+        .content-section {
+      margin-bottom: 3rem;
+      border: 1px solid #ddd;
+      padding: 2rem;
+      border-left: 6px solid var(--rosa-manga);
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .content-section h2 {
+      margin-top: 0;
+      color: var(--namora-escuro);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .content-section p {
+      font-size: 1rem;
+      color: var(--texto-medio);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-left: 1rem;
+      vertical-align: middle;
+    }
+    
+  
+
+        .footer-institucional {
+      background: var(--azul-atlantico);
+      color: white;
+      padding: 3rem 5vw;
+      font-size: 0.9rem;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-coluna h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-coluna h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--amarelo-mel);
+    }
+
+    .footer-coluna ul {
+      list-style: none;
+    }
+
+    .footer-coluna li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-coluna a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .footer-coluna a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .footer-coluna a i {
+      margin-right: 8px;
+      color: var(--amarelo-mel);
+    }
+
+    .footer-creditos {
+      background: var(--azul-atlantico);
+      padding: 1.5rem 5vw;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.85rem;
+    }
+
+    .footer-creditos a {
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-creditos a:hover {
+      color: var(--amarelo-mel);
       text-decoration: underline;
     }
 
-    .submenu {
-      background-color: #e5e5e5;
-      padding: 10px 8vw;
-      position: fixed;
-      top: 58px;
-      width: 100%;
-      z-index: 999;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        @media (max-width: 992px) {
+      .section-title {
+        font-size: 2rem;
+      }
     }
-
-    .submenu ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      padding: 0;
-      margin: 0;
+    
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .submenu-nav ul {
+        gap: 1.5rem;
+      }
     }
+    
+    @media (max-width: 576px) {
+      .section-title {
+        font-size: 1.6rem;
+      }
 
-    .submenu a {
-      text-decoration: none;
-      color: #f3f5f7;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .submenu a:hover {
-      color: #000;
-    }
-
-    main {
-  padding: 180px 8vw 4rem;
-    }
-
-    h1 {
-      font-size: 2rem;
-      color: #003366;
-      margin-bottom: 2rem;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 10px;
-    }
-
-    .section {
-      margin-bottom: 3rem;
-      border: 1px solid #ccc;
-      padding: 20px;
-      border-left: 6px solid #003366;
-      background-color: #f9f9f9;
-    }
-
-    .section h2 {
-      margin-top: 0;
-      color: #003366;
-      font-size: 1.3rem;
-    }
-
-    .section p {
-      font-size: 1rem;
-      color: #333;
-      margin: 10px 0 0;
-    }
-
-    .status {
-      font-size: 0.9rem;
-      color: #666;
-      font-style: italic;
-      margin-top: 5px;
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <a href="https://www.gov.br" class="gov-br-text" target="_blank">gov.br</a>
+  <header class="header">
+    <a href="https://www.gov.br" target="_blank" class="gov-br-text">
+      <i class="fas fa-landmark"></i> gov.br
+    </a>
     <nav class="menu">
       <ul>
         <li><a href="#">COMUNICA BR</a></li>
@@ -137,38 +360,88 @@
     </nav>
   </header>
 
+  <!-- Submenu -->
   <nav class="submenu">
-    <ul>
-      <li><a href="index.html">Início</a></li>
-      <li><a href="informes.html">Informes MIR</a></li>
-      <li><a href="atir.html">ATIR</a></li>
-      <li><a href="norma.html">Normativos</a></li>
-      <li><a href="paineis.html">Painéis</a></li>
-      <li><a href="data.html">Data SINAPIR</a></li>
-    </ul>
+    <nav class="submenu-nav">
+      <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Início</a></li>
+        <li><a href="informes.html"><i class="fas fa-newspaper"></i>Publicações</a></li>
+        <li><a href="atir.html"><i class="fas fa-chart-line"></i> ATIR</a></li>
+        <li><a href="norma.html"><i class="fas fa-gavel"></i> Normativos</a></li>
+        <li><a href="paineis.html"><i class="fas fa-chart-pie"></i> Painéis</a></li>
+        <li><a href="data.html"><i class="fas fa-database"></i> Data SINAPIR</a></li>
+      </ul>
+    </nav>
   </nav>
 
   <main>
-    <h1>Data SINAPIR</h1>
-
-    <div class="section">
-      <h2>Censo SINAPIR</h2>
-      <p>
-        Informações sobre os entes federativos que aderiram ao Sistema Nacional de Promoção da Igualdade Racial – SINAPIR,
-        incluindo estrutura institucional, conselhos e planos de igualdade racial existentes.
-      </p>
-      <p class="status">Status: Em desenvolvimento</p>
+    <div class="section-header">
+      <h1 class="section-title">Data SINAPIR</h1>
     </div>
 
-    <div class="section">
-      <h2>Painel de Indicadores</h2>
+    <div class="content-section">
+      <h2>Censo SINAPIR </span></h2>
       <p>
-        Visualização interativa de dados e indicadores relacionados à promoção da igualdade racial em diferentes regiões do país,
-        com filtros por ano, região e tipo de ação.
+        Informações sobre os entes federativos que aderiram ao Sistema Nacional de Promoção da Igualdade Racial – SINAPIR.
       </p>
-      <p class="status">Status: Em desenvolvimento</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Plano de Enfrentamento ao Racismo </span></h2>
+      <p>
+        Dados e indicadores sobre a implementação do Plano Nacional de Enfrentamento ao Racismo em diferentes regiões do país,
+        com monitoramento de metas e resultados alcançados.
+      </p>
     </div>
   </main>
-</body>
 
+  <!-- Rodapé Institucional -->
+  <footer class="footer-institucional">
+    <div class="footer-container">
+      <div class="footer-coluna">
+        <h3>gov.br</h3>
+        <ul>
+          <li><a href="https://www.gov.br/pt-br"><i class="fas fa-chevron-right"></i> Página inicial</a></li>
+          <li><a href="https://www.gov.br/pt-br/acesso-a-informacao"><i class="fas fa-chevron-right"></i> Acesso à informação</a></li>
+          <li><a href="https://www.gov.br/pt-br/participacao-social"><i class="fas fa-chevron-right"></i> Participe</a></li>
+          <li><a href="https://www.gov.br/pt-br/legislacao"><i class="fas fa-chevron-right"></i> Legislação</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-coluna">
+        <h3>Acesso à informação</h3>
+        <ul>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/acesso-a-informacao"><i class="fas fa-chevron-right"></i> Acesso à informação no MIR</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/acesso-a-informacao/ouvidoria"><i class="fas fa-chevron-right"></i> Ouvidoria</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/acesso-a-informacao/perguntas-frequentes"><i class="fas fa-chevron-right"></i> Perguntas frequentes</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-coluna">
+        <h3>Assuntos</h3>
+        <ul>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/noticias"><i class="fas fa-chevron-right"></i> Notícias</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/acoes-e-programas"><i class="fas fa-chevron-right"></i> Ações e programas</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/publicacoes"><i class="fas fa-chevron-right"></i> Publicações</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/conferencias"><i class="fas fa-chevron-right"></i> Conferências</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-coluna">
+        <h3>Canais</h3>
+        <ul>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/fale-conosco"><i class="fas fa-chevron-right"></i> Fale conosco</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/imprensa"><i class="fas fa-chevron-right"></i> Imprensa</a></li>
+          <li><a href="https://www.youtube.com/c/MinisteriodaMulherdaFamiliaeDosDireitosHumanos"><i class="fas fa-chevron-right"></i> YouTube</a></li>
+          <li><a href="https://www.instagram.com/igualdaderacial/"><i class="fas fa-chevron-right"></i> Instagram</a></li>
+          <li><a href="https://twitter.com/igualdaderacial"><i class="fas fa-chevron-right"></i> Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div class="footer-creditos">
+    <p>© 2024 Ministério da Igualdade Racial - Todos os direitos reservados</p>
+  </div>
+</body>
 </html>

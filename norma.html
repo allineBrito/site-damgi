@@ -2,144 +2,603 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Atos Normativos</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atos Normativos - MIR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    body {
+        :root {
+      --namora-escuro: #4A2712;             --namora-cafe: #5C2D00;               --bogo: #8A858F;                      --amarelo-mel: #D46B00;               --vermelho-guara: #990000;            --azul-atlantico: #0C3B8B;            --amarelo-sol: #D4B000;               --verde-guarizo: #007A00;             --laranja-coral: #CC3300;             --rosa-manga: #D4599A;                --vermelho-urucum: #CC0000;           --verde-amadriba: #00A800;            
+            --gradient-1: linear-gradient(135deg, var(--azul-atlantico), var(--verde-guarizo));
+      --gradient-2: linear-gradient(135deg, var(--amarelo-mel), var(--vermelho-guara));
+      --gradient-3: linear-gradient(135deg, var(--rosa-manga), var(--laranja-coral));
+      
+            --texto-escuro: #2E2E2E;
+      --texto-medio: #555555;
+      --texto-claro: #777777;
+    }
+    
+        * {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #ffffff;
-      color: #0e0909;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #f9f9f9;
+      color: var(--texto-escuro);
+      line-height: 1.7;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    .header {
-      background-color: #003366;
+        .header {
+      background: var(--laranja-coral);
       color: white;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
+      padding: 1.2rem 5vw;
       display: flex;
-      align-items: center;
-      height: 60px;
-      padding: 0 20px;
       justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      position: relative;
+      z-index: 1000;
+      border-bottom: 3px solid var(--amarelo-mel);
     }
 
     .gov-br-text {
-      text-decoration: none;
       color: white;
+      text-decoration: none;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .gov-br-text:hover {
+      color: var(--amarelo-sol);
+      transform: translateY(-2px);
+    }
+
+    .gov-br-text i {
+      font-size: 1.5rem;
+      color: var(--amarelo-sol);
     }
 
     .menu ul {
-      list-style: none;
       display: flex;
-      margin: 0;
-      padding: 0;
-    }
-
-    .menu li {
-      margin-left: 20px;
+      list-style: none;
+      gap: 2rem;
     }
 
     .menu a {
-      text-decoration: none;
       color: white;
-      font-weight: bold;
-      font-size: 14px;
-      transition: color 0.3s ease;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 0;
+      letter-spacing: 0.5px;
     }
 
     .menu a:hover {
-      color: #ffcc00;
+      color: var(--amarelo-sol);
     }
 
-    /* Submenu */
-    .submenu {
-      background-color: #f2f2f2;
-      padding: 10px 8vw;
-      position: fixed;
-      top: 60px; /* logo abaixo do header */
+    .menu a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      background: var(--amarelo-sol);
+      bottom: 0;
+      left: 0;
+      transition: width 0.4s ease;
+      border-radius: 3px;
+    }
+
+    .menu a:hover::after {
       width: 100%;
+    }
+
+        .submenu {
+      background: var(--namora-cafe);
+      padding: 1.2rem 5vw;
+      position: sticky;
+      top: 0;
       z-index: 999;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+      border-bottom: 3px solid var(--amarelo-mel);
     }
 
-    .submenu ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .submenu-nav ul {
       display: flex;
+      list-style: none;
+      justify-content: center;
+      gap: 2.5rem;
       flex-wrap: wrap;
-      gap: 15px;
     }
 
-    .submenu li a {
+    .submenu-nav li a {
       text-decoration: none;
-      color: #020202;
-      font-weight: bold;
-      font-size: 14px;
-      transition: color 0.3s ease;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: all 0.4s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .submenu li a:hover {
-      color: #ffcc00;
+    .submenu-nav li a i {
+      font-size: 1rem;
+      color: var(--amarelo-sol);
+      transition: transform 0.3s ease;
     }
 
-    /* padding ajustado pra header + submenu */
-    main {
-      padding: 160px 8vw 2rem;
+    .submenu-nav li a:hover {
+      color: var(--amarelo-sol);
     }
 
-    h1 {
-      font-size: 2.2rem;
-      color: #003366;
+    .submenu-nav li a:hover i {
+      transform: translateX(5px);
+    }
+
+    .submenu-nav li a::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      background: var(--amarelo-sol);
+      bottom: 0;
+      left: 0;
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+
+    .submenu-nav li a:hover::before {
+      width: 100%;
+    }
+
+        .hero {
+      position: relative;
+      height: 50vh;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(rgba(74, 39, 18, 0.85), rgba(74, 39, 18, 0.9)), 
+                  url('https://negre.com.br/wp-content/uploads/curso-de-ingles-exclusivo-para-pessoas-negras-recebe-inscricoes-ate-esta-quarta-1110x642.png') no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      margin-bottom: 5rem;
+      overflow: hidden;
+      padding: 0 5vw;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(212, 107, 0, 0.25), transparent 60%),
+                  radial-gradient(circle at 80% 70%, rgba(0, 122, 0, 0.2), transparent 60%);
+      animation: float 12s infinite alternate ease-in-out;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-20px, -10px) rotate(-2deg); }
+      100% { transform: translate(10px, 5px) rotate(1deg); }
+    }
+
+    .title-container {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .titulo {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      color: white;
+    }
+
+    .titulo-destaque {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: rgba(74, 39, 18, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 50px;
+      border: 2px solid var(--amarelo-mel);
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: white;
+      max-width: 800px;
+      line-height: 1.6;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+        main {
+      padding: 2rem 8vw 6rem;
+      flex: 1;
+    }
+
+        .section-header {
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      color: var(--namora-escuro);
       margin-bottom: 1rem;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 10px;
+      position: relative;
+      font-weight: 800;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 6px;
+      background: var(--gradient-3);
+      bottom: -15px;
+      left: 0;
+      border-radius: 6px;
+    }
+
+    .section-text {
+      font-size: 1.1rem;
+      color: var(--texto-medio);
+      max-width: 800px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+        .filtros-container {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filtro-label {
+      font-weight: 600;
+      color: var(--namora-escuro);
+      font-size: 1.1rem;
+    }
+
+    .filtro-select {
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      border: 2px solid var(--bogo);
+      background-color: white;
+      font-size: 1rem;
+      color: var(--texto-escuro);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 300px;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1em;
+    }
+
+    .filtro-select:hover {
+      border-color: var(--amarelo-mel);
+      box-shadow: 0 5px 15px rgba(212, 107, 0, 0.1);
+    }
+
+    .filtro-select:focus {
+      outline: none;
+      border-color: var(--amarelo-mel);
+      box-shadow: 0 0 0 3px rgba(212, 107, 0, 0.2);
+    }
+
+        .tabela-container {
+      overflow-x: auto;
+      margin-bottom: 3rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
     }
 
     .tabela-atos {
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 2rem;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
     }
 
-    .tabela-atos th, .tabela-atos td {
-      border: 1px solid #ccc;
-      padding: 12px;
-      text-align: left;
+    .tabela-atos thead {
+      background: var(--gradient-2);
+      color: white;
     }
 
     .tabela-atos th {
-      background-color: #f2f2f2;
+      padding: 1.2rem 1.5rem;
+      text-align: left;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+    }
+
+    .tabela-atos tbody tr {
+      transition: all 0.3s ease;
+    }
+
+    .tabela-atos tbody tr:nth-child(even) {
+      background-color: rgba(138, 133, 143, 0.05);
+    }
+
+    .tabela-atos tbody tr:hover {
+      background-color: rgba(212, 107, 0, 0.05);
+      transform: translateX(5px);
+    }
+
+    .tabela-atos td {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(138, 133, 143, 0.2);
+      vertical-align: top;
     }
 
     .tabela-atos a {
-      color: #003366;
-      font-weight: bold;
+      color: var(--azul-atlantico);
+      font-weight: 600;
       text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .tabela-atos a:hover {
+      color: var(--amarelo-mel);
       text-decoration: underline;
     }
 
-    .legenda {
+    .tabela-atos a i {
+      font-size: 1.2rem;
+    }
+
+        .voltar-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 1rem 2rem;
+      background: var(--gradient-3);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 5px 15px rgba(212, 89, 154, 0.3);
       margin-top: 2rem;
+    }
+
+    .voltar-btn:hover {
+      background: var(--gradient-2);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(212, 107, 0, 0.4);
+    }
+
+    .voltar-btn i {
+      transition: transform 0.3s ease;
+    }
+
+    .voltar-btn:hover i {
+      transform: translateX(-5px);
+    }
+
+        .legenda {
       font-size: 0.9rem;
-      color: #666;
+      color: var(--texto-medio);
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+        .footer-institucional {
+      background: var(--azul-atlantico);
+      color: rgb(253, 253, 253);
+      padding: 3rem 5vw;
+      font-size: 0.9rem;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-coluna h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-coluna h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--amarelo-mel);
+    }
+
+    .footer-coluna ul {
+      list-style: none;
+    }
+
+    .footer-coluna li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-coluna a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .footer-coluna a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .footer-coluna a i {
+      margin-right: 8px;
+      color: var(--amarelo-mel);
+    }
+
+    .footer-creditos {
+      background: var(--gradient-1);
+      padding: 1.5rem 5vw;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.85rem;
+    }
+
+    .footer-creditos a {
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-creditos a:hover {
+      color: var(--amarelo-mel);
+      text-decoration: underline;
+    }
+
+        @media (max-width: 1200px) {
+      .hero {
+        height: 45vh;
+      }
+      
+      .titulo {
+        font-size: 3rem;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .hero {
+        height: 40vh;
+        min-height: 350px;
+      }
+      
+      .titulo {
+        font-size: 2.5rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .filtros-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        height: auto;
+        padding: 6rem 0;
+        clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+      }
+      
+      .titulo {
+        font-size: 2.2rem;
+      }
+      
+      .titulo-destaque {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.5rem;
+      }
+      
+      .submenu-nav ul {
+        gap: 1.5rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .tabela-atos th, 
+      .tabela-atos td {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero {
+        padding: 5rem 0;
+      }
+      
+      .titulo {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 1.6rem;
+      }
+      
+      .filtro-select {
+        min-width: 100%;
+      }
+      
+      .voltar-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
-   <header class="header">
-    <a href="https://www.gov.br" target="_blank" class="gov-br-text">gov.br</a>
+  <header class="header">
+    <a href="https://www.gov.br" target="_blank" class="gov-br-text">
+      <i class="fas fa-landmark"></i> gov.br
+    </a>
     <nav class="menu">
       <ul>
         <li><a href="#">COMUNICA BR</a></li>
@@ -153,89 +612,149 @@
 
   <!-- Submenu -->
   <nav class="submenu">
-    <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="informes.html">Informes MIR</a></li>
-        <li><a href="atir.html">ATIR</a></li>
-        <li><a href="norma.html">Normativos</a></li>
-        <li><a href="paineis.html">Painéis</a></li>
-        <li><a href="data.html">Data SINAPIR</a></li>
-    </ul>
+    <nav class="submenu-nav">
+      <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Início</a></li>
+        <li><a href="informes.html"><i class="fas fa-newspaper"></i> Publicações</a></li>
+        <li><a href="atir.html"><i class="fas fa-chart-line"></i> ATIR</a></li>
+        <li><a href="norma.html"><i class="fas fa-gavel"></i> Normativos</a></li>
+        <li><a href="paineis.html"><i class="fas fa-chart-pie"></i> Painéis</a></li>
+        <li><a href="data.html"><i class="fas fa-database"></i> Data SINAPIR</a></li>
+      </ul>
+    </nav>
   </nav>
 
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="title-container">
+      <h1 class="titulo">ATOS NORMATIVOS</h1>
+      <div class="titulo-destaque">
+        <div>
+          <div>Portarias, instru&ccedil;&otilde;es normativas e demais atos relacionados &agrave; promo&ccedil;&atilde;o da igualdade racial no Brasil dentro do MIR.&nbsp;Portarias, instru&ccedil;&otilde;es normativas e demais atos relacionados &agrave; promo&ccedil;&atilde;o da igualdade racial no Brasil dentro do MIR.&nbsp;</div>
+          <div>Portarias, instru&ccedil;&otilde;es normativas e demais atos relacionados &agrave; promo&ccedil;&atilde;o da igualdade racial no Brasil dentro do MIR.&nbsp;</div>
+          </div>
+      </div>
+    </div>
+  </section>
+
   <main>
-    <h1>Atos Normativos</h1>
-    <p>Aqui você encontra as portarias, instruções normativas e demais atos relacionados à promoção da igualdade racial.</p>
+    <div class="section-header">
+      <h2 class="section-title">Legislação e Normativos</h2>
+      <p class="section-text">
+        Acesse os principais atos normativos que regulamentam as políticas de promoção da igualdade racial no país.
+        Utilize os filtros para encontrar documentos específicos por tipo ou período.
+      </p>
 
-    <label for="filtro-tipo"><strong>Filtrar por tipo:</strong></label>
-    <select id="filtro-tipo" onchange="filtrarPorTipo()">
-      <option value="todos">Todos</option>
-      <option value="Acordos de Cooperação">Acordos de Cooperação</option>
-      <option value="Termo de Execução Descentralizada">Termo de Execução Descentralizada</option>
-      <option value="Instrução Normativa">Instrução Normativa</option>
-      <option value="Nota Técnica">Nota Técnica</option>
-    </select>
+      <div class="filtros-container">
+        <span class="filtro-label">Filtrar por tipo:</span>
+        <select id="filtro-tipo" class="filtro-select" onchange="filtrarPorTipo()">
+          <option value="todos">Todos os tipos</option>
+          <option value="Acordos de Cooperação">Acordos de Cooperação</option>
+          <option value="Termo de Execução Descentralizada">Termo de Execução Descentralizada</option>
+          <option value="Instrução Normativa">Instrução Normativa</option>
+          <option value="Nota Técnica">Nota Técnica</option>
+        </select>
+      </div>
+    </div>
 
-    <button onclick="window.history.back()" style="
-      margin-top: 20px;
-      margin-bottom: 10px;
-      background-color: #003366;
-      color: rgb(87, 26, 26);
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-    ">
-      ← Voltar
-    </button>
-
-    <table class="tabela-atos">
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Tipo</th>
-          <th>Número</th>
-          <th>Ementa</th>
-          <th>Link</th>
-        </tr>
-      </thead>
-      <tbody id="corpo-tabela">
-        <tr>
-          <td>10/04/2025</td>
-          <td>Acordos de Cooperação</td>
-          <td>001/2025</td>
-          <td>Apoio ao Desenvolvimento Sustentável dos Povos e Comunidades Negras Tradicionais.</td>
-          <td><a href="https://www.in.gov.br/web/dou/-/extrato-de-acordo-de-cooperacao-tecnica-495624102" target="_blank">PDF</a></td>
-        </tr>
-        <tr>
-          <td>15/03/2025</td>
-          <td>Termo de Execução Descentralizada</td>
-          <td>002/2025</td>
-          <td>Custeio de 11 (onze) vagas do Programa Executivo de Competências para Liderança...</td>
-          <td><a href="https://www.gov.br/igualdaderacial/pt-br/acesso-a-informacao/convenios-e-transferencias/SEI_4082755_Termo_de_Execucao_Descentralizada_1.pdf" target="_blank">PDF</a></td>
-        </tr>
-        <tr>
-          <td>15/03/2025</td>
-          <td>Instrução Normativa</td>
-          <td>002/2025</td>
-          <td>Estabelece procedimentos para monitoramento de políticas de igualdade racial.</td>
-          <td><a href="atos/in001_2025.pdf" target="_blank">PDF</a></td>
-        </tr>
-        <tr>
-          <td>15/03/2025</td>
-          <td>Nota Técnica</td>
-          <td>002/2025</td>
-          <td>Estabelece procedimentos para monitoramento de políticas de igualdade racial.</td>
-          <td><a href="atos/in001_2025.pdf" target="_blank">PDF</a></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="tabela-container">
+      <table class="tabela-atos">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Tipo</th>
+            <th>Número</th>
+            <th>Ementa</th>
+            <th>Documento</th>
+          </tr>
+        </thead>
+        <tbody id="corpo-tabela">
+          <tr>
+            <td>10/04/2025</td>
+            <td>Acordos de Cooperação</td>
+            <td>001/2025</td>
+            <td>Apoio ao Desenvolvimento Sustentável dos Povos e Comunidades Negras Tradicionais.</td>
+            <td><a href="https://www.in.gov.br/web/dou/-/extrato-de-acordo-de-cooperacao-tecnica-495624102" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a></td>
+          </tr>
+          <tr>
+            <td>15/03/2025</td>
+            <td>Termo de Execução Descentralizada</td>
+            <td>002/2025</td>
+            <td>Custeio de 11 (onze) vagas do Programa Executivo de Competências para Liderança...</td>
+            <td><a href="https://www.gov.br/igualdaderacial/pt-br/acesso-a-informacao/convenios-e-transferencias/SEI_4082755_Termo_de_Execucao_Descentralizada_1.pdf" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a></td>
+          </tr>
+          <tr>
+            <td>15/03/2025</td>
+            <td>Instrução Normativa</td>
+            <td>002/2025</td>
+            <td>Estabelece procedimentos para monitoramento de políticas de igualdade racial.</td>
+            <td><a href="atos/in001_2025.pdf" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a></td>
+          </tr>
+          <tr>
+            <td>15/03/2025</td>
+            <td>Nota Técnica</td>
+            <td>002/2025</td>
+            <td>Estabelece procedimentos para monitoramento de políticas de igualdade racial.</td>
+            <td><a href="atos/in001_2025.pdf" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <p class="legenda">Clique nos links para visualizar ou baixar os documentos em formato PDF.</p>
+
   </main>
 
+  <!-- Rodapé Institucional -->
+  <footer class="footer-institucional">
+    <div class="footer-container">
+      <div class="footer-coluna">
+        <h3>Serviços</h3>
+        <ul>
+          <li><a href="https://www.gov.br/pt-br"><i class="fas fa-chevron-right"></i> Sobre</a></li>
+          <li><a href="https://www.gov.br/pt-br/participacao-social"><i class="fas fa-chevron-right"></i> Participe</a></li>
+          <li><a href="https://www.gov.br/pt-br/legislacao"><i class="fas fa-chevron-right"></i> Legislação</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-coluna">
+        <h3>Acesso à informação</h3>
+        <ul>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/acesso-a-informacao"><i class="fas fa-chevron-right"></i> Acesso à informação no MIR</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/acesso-a-informacao/ouvidoria"><i class="fas fa-chevron-right"></i> Ouvidoria</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/acesso-a-informacao/perguntas-frequentes"><i class="fas fa-chevron-right"></i> Perguntas frequentes</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-coluna">
+        <h3>Assuntos</h3>
+        <ul>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/noticias"><i class="fas fa-chevron-right"></i> Notícias</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/acoes-e-programas"><i class="fas fa-chevron-right"></i> Ações e programas</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/publicacoes"><i class="fas fa-chevron-right"></i> Publicações</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/assuntos/conferencias"><i class="fas fa-chevron-right"></i> Conferências</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-coluna">
+        <h3>Canais</h3>
+        <ul>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/fale-conosco"><i class="fas fa-chevron-right"></i> Fale conosco</a></li>
+          <li><a href="https://www.gov.br/igualdaderacial/pt-br/imprensa"><i class="fas fa-chevron-right"></i> Imprensa</a></li>
+          <li><a href="https://www.youtube.com/c/MinisteriodaMulherdaFamiliaeDosDireitosHumanos"><i class="fas fa-chevron-right"></i> YouTube</a></li>
+          <li><a href="https://www.instagram.com/igualdaderacial/"><i class="fas fa-chevron-right"></i> Instagram</a></li>
+          <li><a href="https://twitter.com/igualdaderacial"><i class="fas fa-chevron-right"></i> Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div class="footer-creditos">
+    <p>© 2024 Ministério da Igualdade Racial - Todos os direitos reservados</p>
+      </div>
+
   <script>
+    // Função de filtro
     function filtrarPorTipo() {
       const filtro = document.getElementById('filtro-tipo').value;
       const linhas = document.querySelectorAll('#corpo-tabela tr');
@@ -249,6 +768,30 @@
         }
       });
     }
+
+    // Animação para os elementos
+    document.addEventListener('DOMContentLoaded', function() {
+      const animateElements = document.querySelectorAll('.tabela-atos tbody tr');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
+          }
+        });
+      }, { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      });
+      
+      animateElements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateX(20px)';
+        el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        observer.observe(el);
+      });
+    });
   </script>
 </body>
 </html>
